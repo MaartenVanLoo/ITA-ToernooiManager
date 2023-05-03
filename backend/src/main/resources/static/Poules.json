@@ -1,0 +1,937 @@
+{
+  "CategoryConfig": {
+    "__comment__": "key = size of category",
+    "1": {
+    },
+    "2": {
+      "__comment__": "best-of-three",
+      "aantal-poules": 1,
+      "poules": {
+        "A": {
+          "aantal": 2
+        }
+      }
+    },
+    "3": {
+      "__comment__": "",
+      "aantal-poules": 1,
+      "poules": {
+        "A": {
+          "aantal": 3
+        }
+      }
+    },
+    "4": {
+      "__comment__": "",
+      "aantal-poules": 1,
+      "poules": {
+        "A": {
+          "aantal": 4
+        }
+      }
+    },
+    "5": {
+      "__comment__": "",
+      "aantal-poules": 1,
+      "poules": {
+        "A": {
+          "aantal": 5
+        }
+      }
+    },
+    "6": {
+      "__comment__": "",
+      "aantal-poules": 2,
+      "poules": {
+        "A": {
+          "aantal": 3
+        },
+        "B": {
+          "aantal": 3
+        }
+      }
+    },
+    "7": {
+      "__comment__": "",
+      "aantal-poules": 2,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 3
+        }
+      }
+    },
+    "8": {
+      "__comment__": "",
+      "aantal-poules": 2,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 4
+        }
+      }
+    },
+    "9": {
+      "__comment__": "",
+      "aantal-poules": 2,
+      "poules": {
+        "A": {
+          "aantal": 5
+        },
+        "B": {
+          "aantal": 4
+        }
+      }
+    },
+    "10": {
+      "__comment__": "",
+      "aantal-poules": 2,
+      "poules": {
+        "A": {
+          "aantal": 5
+        },
+        "B": {
+          "aantal": 5
+        }
+      }
+    },
+    "11": {
+      "__comment__": "",
+      "aantal-poules": 3,
+      "poules": {
+        "A": {
+          "aantal": 3
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        }
+      }
+    },
+    "12": {
+      "__comment__": "",
+      "aantal-poules": 4,
+      "poules": {
+        "A": {
+          "aantal": 3
+        },
+        "B": {
+          "aantal": 3
+        },
+        "C": {
+          "aantal": 3
+        },
+        "D": {
+          "aantal": 3
+        }
+      }
+    },
+    "13": {
+      "__comment__": "",
+      "aantal-poules": 4,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 3
+        },
+        "C": {
+          "aantal": 3
+        },
+        "D": {
+          "aantal": 3
+        }
+      }
+    },
+    "14": {
+      "__comment__": "",
+      "aantal-poules": 4,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 3
+        },
+        "D": {
+          "aantal": 3
+        }
+      }
+    },
+    "15": {
+      "__comment__": "",
+      "aantal-poules": 4,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 3
+        }
+      }
+    },
+    "16": {
+      "__comment__": "",
+      "aantal-poules": 4,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 4
+        }
+      }
+    },
+    "17": {
+      "__comment__": "",
+      "aantal-poules": 4,
+      "poules": {
+        "A": {
+          "aantal": 5
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 4
+        }
+      }
+    },
+    "18": {
+      "__comment__": "",
+      "aantal-poules": 4,
+      "poules": {
+        "A": {
+          "aantal": 5
+        },
+        "B": {
+          "aantal": 5
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 4
+        }
+      }
+    },
+    "19": {
+      "__comment__": "",
+      "aantal-poules": 4,
+      "poules": {
+        "A": {
+          "aantal": 5
+        },
+        "B": {
+          "aantal": 5
+        },
+        "C": {
+          "aantal": 5
+        },
+        "D": {
+          "aantal": 4
+        }
+      }
+    },
+    "20": {
+      "__comment__": "",
+      "aantal-poules": 4,
+      "poules": {
+        "A": {
+          "aantal": 5
+        },
+        "B": {
+          "aantal": 5
+        },
+        "C": {
+          "aantal": 5
+        },
+        "D": {
+          "aantal": 5
+        }
+      }
+    },
+    "21": {
+      "__comment__": "",
+      "aantal-poules": 6,
+      "poules": {
+        "A": {
+          "aantal": 3
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 3
+        },
+        "E": {
+          "aantal": 4
+        },
+        "F": {
+          "aantal": 3
+        }
+      }
+    },
+    "22": {
+      "__comment__": "",
+      "aantal-poules": 6,
+      "poules": {
+        "A": {
+          "aantal": 3
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 3
+        },
+        "E": {
+          "aantal": 4
+        },
+        "F": {
+          "aantal": 4
+        }
+      }
+    },
+    "23": {
+      "__comment__": "",
+      "aantal-poules": 6,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 3
+        },
+        "E": {
+          "aantal": 4
+        },
+        "F": {
+          "aantal": 4
+        }
+      }
+    },
+    "24": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 3
+        },
+        "B": {
+          "aantal": 3
+        },
+        "C": {
+          "aantal": 3
+        },
+        "D": {
+          "aantal": 3
+        },
+        "E": {
+          "aantal": 3
+        },
+        "F": {
+          "aantal": 3
+        },
+        "G": {
+          "aantal": 3
+        },
+        "H": {
+          "aantal": 3
+        }
+      }
+    },
+    "25": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 3
+        },
+        "C": {
+          "aantal": 3
+        },
+        "D": {
+          "aantal": 3
+        },
+        "E": {
+          "aantal": 3
+        },
+        "F": {
+          "aantal": 3
+        },
+        "G": {
+          "aantal": 3
+        },
+        "H": {
+          "aantal": 3
+        }
+      }
+    },
+    "26": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 3
+        },
+        "D": {
+          "aantal": 3
+        },
+        "E": {
+          "aantal": 3
+        },
+        "F": {
+          "aantal": 3
+        },
+        "G": {
+          "aantal": 3
+        },
+        "H": {
+          "aantal": 3
+        }
+      }
+    },
+    "27": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 3
+        },
+        "E": {
+          "aantal": 3
+        },
+        "F": {
+          "aantal": 3
+        },
+        "G": {
+          "aantal": 3
+        },
+        "H": {
+          "aantal": 3
+        }
+      }
+    },
+    "28": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 4
+        },
+        "E": {
+          "aantal": 3
+        },
+        "F": {
+          "aantal": 3
+        },
+        "G": {
+          "aantal": 3
+        },
+        "H": {
+          "aantal": 3
+        }
+      }
+    },
+    "29": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 4
+        },
+        "E": {
+          "aantal": 4
+        },
+        "F": {
+          "aantal": 3
+        },
+        "G": {
+          "aantal": 3
+        },
+        "H": {
+          "aantal": 3
+        }
+      }
+    },
+    "30": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 4
+        },
+        "E": {
+          "aantal": 4
+        },
+        "F": {
+          "aantal": 4
+        },
+        "G": {
+          "aantal": 3
+        },
+        "H": {
+          "aantal": 3
+        }
+      }
+    },
+    "31": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 4
+        },
+        "E": {
+          "aantal": 4
+        },
+        "F": {
+          "aantal": 4
+        },
+        "G": {
+          "aantal": 4
+        },
+        "H": {
+          "aantal": 3
+        }
+      }
+    },
+    "32": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 4
+        },
+        "E": {
+          "aantal": 4
+        },
+        "F": {
+          "aantal": 4
+        },
+        "G": {
+          "aantal": 4
+        },
+        "H": {
+          "aantal": 4
+        }
+      }
+    },
+    "33": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 4
+        },
+        "B": {
+          "aantal": 4
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 4
+        },
+        "E": {
+          "aantal": 4
+        },
+        "F": {
+          "aantal": 4
+        },
+        "G": {
+          "aantal": 4
+        },
+        "H": {
+          "aantal": 4
+        }
+      }
+    },
+    "34": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 5
+        },
+        "B": {
+          "aantal": 5
+        },
+        "C": {
+          "aantal": 4
+        },
+        "D": {
+          "aantal": 4
+        },
+        "E": {
+          "aantal": 4
+        },
+        "F": {
+          "aantal": 4
+        },
+        "G": {
+          "aantal": 4
+        },
+        "H": {
+          "aantal": 4
+        }
+      }
+    },
+    "35": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 5
+        },
+        "B": {
+          "aantal": 5
+        },
+        "C": {
+          "aantal": 5
+        },
+        "D": {
+          "aantal": 4
+        },
+        "E": {
+          "aantal": 4
+        },
+        "F": {
+          "aantal": 4
+        },
+        "G": {
+          "aantal": 4
+        },
+        "H": {
+          "aantal": 4
+        }
+      }
+    },
+    "36": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 5
+        },
+        "B": {
+          "aantal": 5
+        },
+        "C": {
+          "aantal": 5
+        },
+        "D": {
+          "aantal": 5
+        },
+        "E": {
+          "aantal": 4
+        },
+        "F": {
+          "aantal": 4
+        },
+        "G": {
+          "aantal": 4
+        },
+        "H": {
+          "aantal": 4
+        }
+      }
+    },
+    "37": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 5
+        },
+        "B": {
+          "aantal": 5
+        },
+        "C": {
+          "aantal": 5
+        },
+        "D": {
+          "aantal": 5
+        },
+        "E": {
+          "aantal": 5
+        },
+        "F": {
+          "aantal": 4
+        },
+        "G": {
+          "aantal": 4
+        },
+        "H": {
+          "aantal": 4
+        }
+      }
+    },
+    "38": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 5
+        },
+        "B": {
+          "aantal": 5
+        },
+        "C": {
+          "aantal": 5
+        },
+        "D": {
+          "aantal": 5
+        },
+        "E": {
+          "aantal": 5
+        },
+        "F": {
+          "aantal": 5
+        },
+        "G": {
+          "aantal": 4
+        },
+        "H": {
+          "aantal": 4
+        }
+      }
+    },
+    "39": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 5
+        },
+        "B": {
+          "aantal": 5
+        },
+        "C": {
+          "aantal": 5
+        },
+        "D": {
+          "aantal": 5
+        },
+        "E": {
+          "aantal": 5
+        },
+        "F": {
+          "aantal": 5
+        },
+        "G": {
+          "aantal": 5
+        },
+        "H": {
+          "aantal": 4
+        }
+      }
+    },
+    "40": {
+      "__comment__": "",
+      "aantal-poules": 8,
+      "poules": {
+        "A": {
+          "aantal": 5
+        },
+        "B": {
+          "aantal": 5
+        },
+        "C": {
+          "aantal": 5
+        },
+        "D": {
+          "aantal": 5
+        },
+        "E": {
+          "aantal": 5
+        },
+        "F": {
+          "aantal": 5
+        },
+        "G": {
+          "aantal": 5
+        },
+        "H": {
+          "aantal": 5
+        }
+      }
+    }
+  },
+
+  "PouleConfig":{
+    "__comment__": "key = size of poule",
+    "2": {
+      "__comment__": "best-of-three",
+      "totaal_wedstrijden": 3,
+      "wedstrijden": [
+        {"w": 0, "b": 1,"ronde": 0},
+        {"w": 0, "b": 1,"ronde": 1},
+        {"w": 0, "b": 1,"ronde": 2}
+      ]
+    },
+    "3": {
+      "__comment__": "",
+      "totaal_wedstrijden": 3,
+      "wedstrijden": [
+        {"w": 0, "b": 1,"ronde": 0},
+        {"w": 1, "b": 2,"ronde": 1},
+        {"w": 0, "b": 2,"ronde": 2}
+      ]
+    },
+    "4": {
+      "__comment__": "",
+      "totaal_wedstrijden": 6,
+      "wedstrijden": [
+        {"w": 0, "b": 1,"ronde": 0},
+        {"w": 2, "b": 3,"ronde": 0},
+        {"w": 0, "b": 2,"ronde": 1},
+        {"w": 1, "b": 3,"ronde": 1},
+        {"w": 0, "b": 3,"ronde": 2},
+        {"w": 1, "b": 2,"ronde": 2}
+      ]
+    },
+    "5": {
+      "__comment__": "",
+      "totaal_wedstrijden": 10,
+      "wedstrijden": [
+        {"w": 0, "b": 1,"ronde": 0},
+        {"w": 2, "b": 3,"ronde": 0},
+        {"w": 0, "b": 4,"ronde": 1},
+        {"w": 1, "b": 2,"ronde": 1},
+        {"w": 3, "b": 4,"ronde": 2},
+        {"w": 0, "b": 2,"ronde": 2},
+        {"w": 1, "b": 3,"ronde": 3},
+        {"w": 2, "b": 4,"ronde": 3},
+        {"w": 0, "b": 3,"ronde": 4},
+        {"w": 1, "b": 4,"ronde": 4}
+      ]
+    }
+  },
+
+  "TreeConfig:":{
+    "__comment__": "key = size of tree",
+    "4": {
+      "__comment__": "6-10 deelnemers"
+    },
+    "6": {
+      "__comment__": "11 deelnemers"
+    },
+    "8": {
+      "__comment__": "12-20 deelnemers"
+    },
+    "12": {
+      "__comment__": "21-23 deelnemers"
+    },
+    "16": {
+      "__comment__": "24-40 deelnemers"
+    },
+    "24": {
+      "__comment__": "41-47 deelnemers"
+    },
+    "32": {
+      "__comment__": "48-80 deelnemers"
+    }
+  }
+}
