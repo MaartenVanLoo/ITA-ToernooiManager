@@ -9,7 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -25,12 +25,15 @@ public class Role {
     @Column(nullable = false)
     private String name;
 
+    @Column
+    private String description;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "ROLE_PRIV",
             joinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "id", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "PRIV_ID", referencedColumnName = "id", nullable = false)})
-    private List<Privilege> privileges;
+    private Set<Privilege> privileges;
 
     @CreationTimestamp
     @Column(name = "date_created", nullable = false, updatable = false)
@@ -42,5 +45,11 @@ public class Role {
 
     public Role(String name) {
         this.name = name;
+    }
+
+    public Role(String name, String description, Set<Privilege> privileges) {
+        this.name = name;
+        this.description = description;
+        this.privileges = privileges;
     }
 }

@@ -1,34 +1,40 @@
 package be.ita.toernooimanager.service.acl;
 
-import lombok.RequiredArgsConstructor;
+import be.ita.toernooimanager.model.local.acl.Role;
+import be.ita.toernooimanager.model.local.acl.User;
+import be.ita.toernooimanager.repositories.local.acl.UserRepository;
+import be.ita.toernooimanager.service.Exceptions.AlreadyExistsException;
+import be.ita.toernooimanager.service.Exceptions.ResourceNotFoundException;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Slf4j
 public class UserService {
-    /*public HashMap<String, User> users = new HashMap<>();
-
     private RoleService roleService;
+    private UserRepository userRepository;
 
     public User createUser(User user) throws AlreadyExistsException {
-        if (users.containsKey(user.getName())) {
+        if (userRepository.existsByName(user.getName())) {
             throw new AlreadyExistsException(String.format("User %s already exists",user.getName()));
         }
-        Set<Role> roles = new HashSet<>();
-        for (Role userRole: user.getRoles()){
-            Role role = roleService.getRoleByName(userRole.getName());
-            if (role == null) continue;
-            roles.add(role);
-        }
-        user.setRoles(roles);
-        users.put(user.getName(),user); //Make sure they reference the correct roles;
-        return user;
+        if (user.getRoles() != null)
+            user.setRoles(
+                    user.getRoles().stream()
+                            .map(role -> roleService.getRoleByName(role.getName()))
+                            .collect(Collectors.toSet())
+            );
+        return userRepository.save(user);
     }
     public User createUser(String name, String description, Set<Role> userRoles) throws AlreadyExistsException {
-        User user = new User(name, description, userRoles); //correct role mapping will happen here
-        return this.createUser(user);
+        User user = new User(name, description, userRoles);
+        return this.createUser(user); //correct role mapping will happen here
     }
     public User createUser(String name, String description, Role userRole) throws AlreadyExistsException {
         Set<Role> roles = new HashSet<>();
@@ -38,8 +44,8 @@ public class UserService {
     }
 
     public User getUserByName(String name) {
-        return users.get(name);
+        return userRepository.findByName(name)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("User %s doesn't exist", name)));
     }
 
-     */
 }

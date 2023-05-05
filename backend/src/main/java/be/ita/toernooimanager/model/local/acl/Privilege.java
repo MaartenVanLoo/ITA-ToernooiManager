@@ -27,4 +27,9 @@ public class Privilege {
     public Privilege(String name) {
         this.name = name;
     }
+
+    public Privilege(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }

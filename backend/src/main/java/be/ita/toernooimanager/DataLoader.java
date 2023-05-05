@@ -1,15 +1,22 @@
-package be.ita.toernooimanager.service.shiai;
+package be.ita.toernooimanager;
 
-//import be.ita.toernooimanager.service.acl.*
+import be.ita.toernooimanager.model.local.acl.Privilege;
+import be.ita.toernooimanager.service.acl.PrivilegeService;
+import be.ita.toernooimanager.service.acl.RoleService;
+import be.ita.toernooimanager.service.acl.UserService;
+import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
 @Slf4j
 public class DataLoader {
-/*
+
     PrivilegeService privilegeService;
     RoleService roleService;
     UserService userService;
@@ -80,8 +87,6 @@ public class DataLoader {
     }
     private void createUsers(){
         try{
-            Set<Role> roles = new HashSet<>();
-
             userService.createUser("Info","",roleService.getRoleByName("Info"));
             userService.createUser("Weeg","",roleService.getRoleByName("Weeg"));
             userService.createUser("Tatami1","",roleService.getRoleByName("Tatami"));
@@ -100,5 +105,4 @@ public class DataLoader {
         }
     }
 
- */
 }
