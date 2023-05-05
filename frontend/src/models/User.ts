@@ -14,24 +14,26 @@ export class Role {
 }
 
 export class UserCredentials {
-  email: string;
+  userName: string;
   password: string;
 
-  constructor(email: string, password: string) {
-    this.email = email;
+  constructor(userName: string, password: string) {
+    this.userName = userName;
     this.password = password;
   }
 }
 
 export class JWTUser{
-  email: string;
+  name: string;
+  id: string;
   roles: string[];
   exp: number;
   iat: number;
   iss: string;
   sub: string;
-  constructor(email: string, roles: string[], exp: number, iat: number, iss: string, sub: string) {
-    this.email = email;
+  constructor(name: string, id:string, roles: string[], exp: number, iat: number, iss: string, sub: string) {
+    this.name = name;
+    this.id = id;
     this.roles = roles;
     this.exp = exp;
     this.iat = iat;

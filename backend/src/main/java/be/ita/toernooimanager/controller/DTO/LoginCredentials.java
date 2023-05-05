@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class LoginCredentials {
-    private final String name;
+    private final String userName;
     private final String password;
 }

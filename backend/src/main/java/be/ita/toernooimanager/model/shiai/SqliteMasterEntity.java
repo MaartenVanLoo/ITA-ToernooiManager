@@ -32,7 +32,7 @@ public class SqliteMasterEntity {
         this.type = type;
     }
 
-    public String getName() {
+    public String getUserName() {
         return name;
     }
 

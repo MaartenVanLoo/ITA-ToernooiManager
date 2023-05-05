@@ -8,7 +8,6 @@ import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
@@ -32,10 +31,10 @@ public class AuthController {
         log.info("POST: /login");
         try {
             UsernamePasswordAuthenticationToken authInputToken =
-                    new UsernamePasswordAuthenticationToken(loginCredentials.getName(), loginCredentials.getPassword());
+                    new UsernamePasswordAuthenticationToken(loginCredentials.getUserName(), loginCredentials.getPassword());
 
             authManager.authenticate(authInputToken);
-            User user = userService.getUserByName(loginCredentials.getName());
+            User user = userService.getUserByName(loginCredentials.getUserName());
             String token = jwtUtil.generateToken(user);
 
             return Collections.singletonMap("jwt-token", token);

@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import {useAuthStore} from "@/stores/AuthStore";
 import Default from "@/layouts/Default.vue";
 const Home = () =>import('@/views/Home.vue')
+const Login = () =>import('@/views/Login.vue')
 const routes = [
   {
     path: '/',
@@ -21,6 +22,11 @@ const routes = [
       }
     ],
   },
+  {
+    path:'/login',
+    name: 'Login',
+    component: Login
+  }
   //Default page when all other paths don't match. This must remain the final element in this list.
   //{
   //  path:'/:pathMatch(.*)*',
@@ -41,16 +47,16 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/users/reset_password']
+  const publicPages = ['/login']
   const authRequired = !publicPages.includes(to.path)
   const authStore = useAuthStore()
 
   // trying to access a restricted page + not logged in
   // redirect to login page
   //TODO: Enable authentication when backend supports it
-  //if (authRequired && !authStore.isLoggedIn) {
-  //  return next('/login')
-  //}
+  if (authRequired && !authStore.isLoggedIn) {
+    return next('/login')
+  }
 
   next()
 })
