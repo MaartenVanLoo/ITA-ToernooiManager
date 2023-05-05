@@ -20,10 +20,10 @@
                 item-value="username"
             ></v-autocomplete>
             <v-text-field v-if="selectedUser === 'Other'"
-                prepend-icon="mdi-account" name="email" label="Email"
+                prepend-icon="mdi-account" name="Username" label="Username"
                 v-model="otherUser"
                 id="username"
-                :error-messages="fieldErrors.get('email')"
+                :error-messages="fieldErrors.get('UserName')"
                 @update:modelValue=""
                 @keydown.enter="login()"
             ></v-text-field>
@@ -83,7 +83,7 @@ const dropdown = ref(
       {field:"Tatami 7",username:"Tatami7"},
       {field:"Tatami 8",username:"Tatami8"},
       {field:"Info",username:"Info"},
-      {field:"Weeg computer",username:"Weeg computer"},
+      {field:"Weeg computer",username:"Weeg"},
       {field:"Other",username:"Other"}
     ]
 )
@@ -106,9 +106,15 @@ function login(){
       username = otherUser.value;
   }
 
-  authStore.login(new UserCredentials(username, password)).then(() => {
+  authStore.login(new UserCredentials(username, password)).then(async () => {
     console.log('login success')
-    router.push('/home')
+    if (username.startsWith("Tatami")){
+       const id = username.replace("Tatami","");
+      await router.push('/tatami/'+id);
+    }
+    else if (username.includes("Weeg")) await router.push('/weeg')
+    else if (username.includes("Info")) await router.push('/Info')
+    else await router.push('/home')
   }).catch(() => {
     console.log('login error')
     showError.value = true
