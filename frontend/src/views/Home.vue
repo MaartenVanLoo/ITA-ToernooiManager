@@ -2,6 +2,12 @@
   <v-container
     class="align-center justify-center"
   >
+    <Workflow :title="workflowTitle" :steps="workflowSteps">
+      <template #workflow-slot>
+
+      </template>
+    </Workflow>
+
     <v-card flat class="align-center justify-center">
       <v-img src="@/assets/ita.png" style="max-height: 200px;"/>
       <!--source: app.logo.com-->
@@ -55,10 +61,35 @@
 </template>
 
 <script lang="ts" setup>
+const workflowTitle= 'Workflow'
+const workflowSteps= [
+  {
+    id: 1,
+    name: 'Step 1',
+    completed: true,
+  },
+  {
+    id: 2,
+    name: 'Step 2',
+    completed: true,
+  },
+  {
+    id: 3,
+    name: 'Step 3',
+    completed: false,
+  },
+  {
+    id: 4,
+    name: 'Step 4',
+    completed: false,
+  },
+]
+
 
 import {useThemeStore} from "@/stores/ThemeStore";
 import {ref} from "vue";
 import {useAuthStore} from "@/stores/AuthStore";
+import Workflow from "@/components/WorkflowProgress.vue";
 const authStore = useAuthStore();
 useThemeStore() //load theme;
 
