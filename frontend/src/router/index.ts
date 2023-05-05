@@ -4,6 +4,9 @@ import {useAuthStore} from "@/stores/AuthStore";
 import Default from "@/layouts/Default.vue";
 const Home = () =>import('@/views/Home.vue')
 const Login = () =>import('@/views/Login.vue')
+const CompetitionClock = ()=> import("@/views/Tatami/CompetitionClock.vue");
+const Info = ()=> import("@/views/Info/Info.vue")
+const Weeg = ()=>import("@/views/Weeg/Weeg.vue")
 const routes = [
   {
     path: '/',
@@ -26,6 +29,21 @@ const routes = [
     path:'/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path:'/tatami/:id',
+    name: "CompetitionClock",
+    component: CompetitionClock
+  },
+  {
+    path:'/info/',
+    name: "Info",
+    component: Info
+  },
+  {
+    path:'/Weeg/',
+    name: "Weeg",
+    component: Weeg
   }
   //Default page when all other paths don't match. This must remain the final element in this list.
   //{
