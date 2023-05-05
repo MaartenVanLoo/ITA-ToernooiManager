@@ -1,4 +1,4 @@
-package be.ita.toernooimanager.service.acl;
+package be.ita.toernooimanager.service.local.acl;
 
 import be.ita.toernooimanager.model.local.acl.Privilege;
 import be.ita.toernooimanager.repositories.local.acl.PrivilegeRepository;

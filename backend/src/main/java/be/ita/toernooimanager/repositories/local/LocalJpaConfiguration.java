@@ -46,9 +46,7 @@ public class LocalJpaConfiguration {
         return builder
                 .dataSource(dataSource)
                 .properties(props)
-                .packages(Privilege.class)
-                .packages(Role.class)
-                .packages(User.class)
+                .packages("be.ita.toernooimanager.model.local")
                 .build();
     }
 

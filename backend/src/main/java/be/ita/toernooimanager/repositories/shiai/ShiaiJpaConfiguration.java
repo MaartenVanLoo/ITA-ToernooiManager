@@ -32,11 +32,7 @@ public class ShiaiJpaConfiguration {
     ) {
         return builder
                 .dataSource(dataSource)
-                .packages(CatdefObject.class)
-                .packages(CategoriesEntity.class)
-                .packages(CompetitorsEntity.class)
-                .packages(InfoEntity.class)
-                .packages(MatchesEntity.class)
+                .packages("be.ita.toernooimanager.model.shiai")
                 .build();
     }
 

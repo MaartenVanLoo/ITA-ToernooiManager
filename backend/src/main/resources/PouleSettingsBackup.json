@@ -1,0 +1,141 @@
+
+[
+  {
+    "__comment__": "best-of-three",
+    "competitorCount": 2,
+    "matchCount": 3,
+    "matches": [
+      {
+        "white": 0,
+        "blue": 1,
+        "round": 0
+      },
+      {
+        "white": 0,
+        "blue": 1,
+        "round": 1
+      },
+      {
+        "white": 0,
+        "blue": 1,
+        "round": 2
+      }
+    ]
+  },
+  {
+    "competitorCount": 3,
+    "__comment__": "",
+    "matchCount": 3,
+    "matches": [
+      {
+        "white": 0,
+        "blue": 1,
+        "round": 0
+      },
+      {
+        "white": 1,
+        "blue": 2,
+        "round": 1
+      },
+      {
+        "white": 0,
+        "blue": 2,
+        "round": 2
+      }
+    ]
+  },
+  {
+    "competitorCount": 4,
+    "__comment__": "",
+    "matchCount": 6,
+    "matches": [
+      {
+        "white": 0,
+        "blue": 1,
+        "round": 0
+      },
+      {
+        "white": 2,
+        "blue": 3,
+        "round": 0
+      },
+      {
+        "white": 0,
+        "blue": 2,
+        "round": 1
+      },
+      {
+        "white": 1,
+        "blue": 3,
+        "round": 1
+      },
+      {
+        "white": 0,
+        "blue": 3,
+        "round": 2
+      },
+      {
+        "white": 1,
+        "blue": 2,
+        "round": 2
+      }
+    ]
+  },
+  {
+    "competitorCount": 5,
+    "__comment__": "",
+    "matchCount": 10,
+    "matches": [
+      {
+        "white": 0,
+        "blue": 1,
+        "round": 0
+      },
+      {
+        "white": 2,
+        "blue": 3,
+        "round": 0
+      },
+      {
+        "white": 0,
+        "blue": 4,
+        "round": 1
+      },
+      {
+        "white": 1,
+        "blue": 2,
+        "round": 1
+      },
+      {
+        "white": 3,
+        "blue": 4,
+        "round": 2
+      },
+      {
+        "white": 0,
+        "blue": 2,
+        "round": 2
+      },
+      {
+        "white": 1,
+        "blue": 3,
+        "round": 3
+      },
+      {
+        "white": 2,
+        "blue": 4,
+        "round": 3
+      },
+      {
+        "white": 0,
+        "blue": 3,
+        "round": 4
+      },
+      {
+        "white": 1,
+        "blue": 4,
+        "round": 4
+      }
+    ]
+  }
+]

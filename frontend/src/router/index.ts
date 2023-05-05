@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import {useAuthStore} from "@/stores/AuthStore";
 import Default from "@/layouts/Default.vue";
 const Home = () =>import('@/views/Home.vue')
-const Login = () =>import('@/views/Login.vue')
+const Login = () =>import('@/views/Auth/Login.vue')
 const CompetitionClock = ()=> import("@/views/Tatami/CompetitionClock.vue");
 const Info = ()=> import("@/views/Info/Info.vue")
 const Weeg = ()=>import("@/views/Weeg/Weeg.vue")

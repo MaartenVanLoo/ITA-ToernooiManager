@@ -46,7 +46,9 @@ public class SecurityConfig {
                         requests.requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/swagger-ui/**").permitAll()
                                 .requestMatchers("/v3/api-docs/**").permitAll()
-                                .requestMatchers("/actuator/**").hasAnyAuthority("admin_read","admin_write","manager_read","manager_write")
+                                .requestMatchers("/actuator/startup").permitAll()
+                                //.requestMatchers("/actuator/**").hasAnyAuthority("admin_read","admin_write","manager_read","manager_write")
+                                .requestMatchers("/actuator/**").permitAll()
                                 .requestMatchers("/error").anonymous() // To allow error messages to be shown
                                 .requestMatchers("/**").authenticated().and().headers().frameOptions().sameOrigin();
                     } catch (Exception e) {

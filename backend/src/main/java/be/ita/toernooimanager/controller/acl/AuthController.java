@@ -3,7 +3,7 @@ package be.ita.toernooimanager.controller.acl;
 import be.ita.toernooimanager.controller.DTO.LoginCredentials;
 import be.ita.toernooimanager.model.local.acl.User;
 import be.ita.toernooimanager.security.util.JWTUtil;
-import be.ita.toernooimanager.service.acl.UserService;
+import be.ita.toernooimanager.service.local.acl.UserService;
 import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

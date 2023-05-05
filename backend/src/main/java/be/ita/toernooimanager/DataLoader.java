@@ -1,31 +1,41 @@
 package be.ita.toernooimanager;
 
 import be.ita.toernooimanager.model.local.acl.Privilege;
-import be.ita.toernooimanager.service.acl.PrivilegeService;
-import be.ita.toernooimanager.service.acl.RoleService;
-import be.ita.toernooimanager.service.acl.UserService;
+import be.ita.toernooimanager.service.local.acl.PrivilegeService;
+import be.ita.toernooimanager.service.local.acl.RoleService;
+import be.ita.toernooimanager.service.local.acl.UserService;
+import be.ita.toernooimanager.service.local.config.PouleSettingsService;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.data.repository.cdi.Eager;
 import org.springframework.stereotype.Service;
 
+import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
 @AllArgsConstructor
 @Slf4j
+@Lazy(false)
 public class DataLoader {
+    private static final String pouleSettingsFile = "/PouleSettings.json";
 
     PrivilegeService privilegeService;
     RoleService roleService;
     UserService userService;
+    PouleSettingsService pouleSettingsService;
 
     @PostConstruct
     public void initData(){
+        log.info("Data loader started...");
         createPrivileges();
         createRoles();
         createUsers();
+        loadSettings();
+        log.info("Data loader complete...");
     }
 
     private void createPrivileges() {
@@ -54,16 +64,19 @@ public class DataLoader {
         try{
             Set<Privilege> infoPrivileges = new HashSet<>();
             infoPrivileges.add(privilegeService.getPrivilegeByName("info_read"));
+            infoPrivileges.add(privilegeService.getPrivilegeByName("logon"));
             roleService.createRole("Info","", infoPrivileges);
 
             Set<Privilege> weegPrivileges = new HashSet<>();
             weegPrivileges.add(privilegeService.getPrivilegeByName("weeg_read"));
             weegPrivileges.add(privilegeService.getPrivilegeByName("weeg_write"));
+            weegPrivileges.add(privilegeService.getPrivilegeByName("logon"));
             roleService.createRole("Weeg","", weegPrivileges);
 
             Set<Privilege> tatamiPrivileges = new HashSet<>();
             tatamiPrivileges.add(privilegeService.getPrivilegeByName("tatami_read"));
             tatamiPrivileges.add(privilegeService.getPrivilegeByName("tatami_write"));
+            tatamiPrivileges.add(privilegeService.getPrivilegeByName("logon"));
             roleService.createRole("Tatami","", tatamiPrivileges);
 
             Set<Privilege> managerPrivileges = new HashSet<>();
@@ -74,6 +87,7 @@ public class DataLoader {
             managerPrivileges.add(privilegeService.getPrivilegeByName("weeg_write"));
             managerPrivileges.add(privilegeService.getPrivilegeByName("tatami_read"));
             managerPrivileges.add(privilegeService.getPrivilegeByName("tatami_write"));
+            managerPrivileges.add(privilegeService.getPrivilegeByName("logon"));
             roleService.createRole("Manager","", managerPrivileges);
 
             Set<Privilege> adminPrivileges = new HashSet<>();
@@ -105,6 +119,19 @@ public class DataLoader {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void loadSettings(){
+        loadPouleSettings();
+    }
+    private void loadPouleSettings(){
+        URL url = this.getClass().getResource(DataLoader.pouleSettingsFile);
+        if (url == null){
+            log.warn("Could not load Poule Settings");
+            return;
+        }
+        pouleSettingsService.load(url.getPath());
+        pouleSettingsService.save(url.getPath());
     }
 
 }
