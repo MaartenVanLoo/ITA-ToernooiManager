@@ -3,16 +3,14 @@ package be.ita.toernooimanager.service.shiai.mapper;
 import be.ita.toernooimanager.controller.DTO.GetCatdefDto;
 import be.ita.toernooimanager.model.shiai.CatdefEntity;
 import be.ita.toernooimanager.model.shiai.CatdefObject;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor
 public class CatdefMapper {
     private final ModelMapper modelMapper;
-
-    public CatdefMapper() {
-        this.modelMapper = new ModelMapper();
-    }
 
     public CatdefEntity mapObject(CatdefObject obj){
         return obj.getId();

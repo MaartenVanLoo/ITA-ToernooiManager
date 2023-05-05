@@ -28,7 +28,7 @@ public class User {
 
     @Column
     @JsonIgnore
-    private String password;
+    private String password = "Admin12345!"; //=default value
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

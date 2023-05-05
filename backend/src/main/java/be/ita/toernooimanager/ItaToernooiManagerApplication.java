@@ -1,5 +1,6 @@
 package be.ita.toernooimanager;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +17,10 @@ public class ItaToernooiManagerApplication {
         SpringApplication.run(ItaToernooiManagerApplication.class, args);
     }
 
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
     @Bean
     @Primary
     public JdbcTemplate shiaiJdbcTemplate(@Qualifier("shiaiDataSource") DataSource dataSource) {

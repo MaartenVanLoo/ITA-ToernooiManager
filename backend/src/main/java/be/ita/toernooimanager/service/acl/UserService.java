@@ -7,6 +7,7 @@ import be.ita.toernooimanager.service.Exceptions.AlreadyExistsException;
 import be.ita.toernooimanager.service.Exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -20,6 +21,8 @@ public class UserService {
     private RoleService roleService;
     private UserRepository userRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     public User createUser(User user) throws AlreadyExistsException {
         if (userRepository.existsByName(user.getName())) {
             throw new AlreadyExistsException(String.format("User %s already exists",user.getName()));
@@ -30,6 +33,7 @@ public class UserService {
                             .map(role -> roleService.getRoleByName(role.getName()))
                             .collect(Collectors.toSet())
             );
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
     public User createUser(String name, String description, Set<Role> userRoles) throws AlreadyExistsException {

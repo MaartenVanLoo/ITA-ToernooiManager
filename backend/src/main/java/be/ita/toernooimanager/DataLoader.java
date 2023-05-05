@@ -44,6 +44,8 @@ public class DataLoader {
             //Tatami's
             privilegeService.createPrivilege("tatami_read","");
             privilegeService.createPrivilege("tatami_write","");
+            //Everyone who is logged in
+            privilegeService.createPrivilege("logon","");
         }catch (Exception e){
             e.printStackTrace();
         }
