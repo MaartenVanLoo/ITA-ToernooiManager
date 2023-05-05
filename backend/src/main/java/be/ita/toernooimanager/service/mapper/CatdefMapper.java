@@ -1,4 +1,4 @@
-package be.ita.toernooimanager.service.Mapper;
+package be.ita.toernooimanager.service.mapper;
 
 import be.ita.toernooimanager.controller.DTO.GetCatdefDto;
 import be.ita.toernooimanager.model.CatdefEntity;

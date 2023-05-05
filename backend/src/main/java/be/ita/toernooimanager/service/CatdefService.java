@@ -3,7 +3,7 @@ package be.ita.toernooimanager.service;
 
 import be.ita.toernooimanager.model.CatdefEntity;
 import be.ita.toernooimanager.repositories.CatdefRepository;
-import be.ita.toernooimanager.service.Mapper.CatdefMapper;
+import be.ita.toernooimanager.service.mapper.CatdefMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

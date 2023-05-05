@@ -1,8 +1,7 @@
 {
   "CategoryConfig": {
-    "__comment__": "key = size of category",
-    "1": {
-    },
+    "__comment__": "key is size of category",
+    "1": {},
     "2": {
       "__comment__": "best-of-three",
       "aantal-poules": 1,
@@ -859,102 +858,267 @@
       }
     }
   },
-
-  "PouleConfig":{
-    "__comment__": "key = size of poule",
+  "PouleConfig": {
+    "__comment__": "key is size of poule",
     "2": {
       "__comment__": "best-of-three",
       "totaal_wedstrijden": 3,
       "wedstrijden": [
-        {"w": 0, "b": 1,"ronde": 0},
-        {"w": 0, "b": 1,"ronde": 1},
-        {"w": 0, "b": 1,"ronde": 2}
+        {
+          "w": 0,
+          "b": 1,
+          "ronde": 0
+        },
+        {
+          "w": 0,
+          "b": 1,
+          "ronde": 1
+        },
+        {
+          "w": 0,
+          "b": 1,
+          "ronde": 2
+        }
       ]
     },
     "3": {
       "__comment__": "",
       "totaal_wedstrijden": 3,
       "wedstrijden": [
-        {"w": 0, "b": 1,"ronde": 0},
-        {"w": 1, "b": 2,"ronde": 1},
-        {"w": 0, "b": 2,"ronde": 2}
+        {
+          "w": 0,
+          "b": 1,
+          "ronde": 0
+        },
+        {
+          "w": 1,
+          "b": 2,
+          "ronde": 1
+        },
+        {
+          "w": 0,
+          "b": 2,
+          "ronde": 2
+        }
       ]
     },
     "4": {
       "__comment__": "",
       "totaal_wedstrijden": 6,
       "wedstrijden": [
-        {"w": 0, "b": 1,"ronde": 0},
-        {"w": 2, "b": 3,"ronde": 0},
-        {"w": 0, "b": 2,"ronde": 1},
-        {"w": 1, "b": 3,"ronde": 1},
-        {"w": 0, "b": 3,"ronde": 2},
-        {"w": 1, "b": 2,"ronde": 2}
+        {
+          "w": 0,
+          "b": 1,
+          "ronde": 0
+        },
+        {
+          "w": 2,
+          "b": 3,
+          "ronde": 0
+        },
+        {
+          "w": 0,
+          "b": 2,
+          "ronde": 1
+        },
+        {
+          "w": 1,
+          "b": 3,
+          "ronde": 1
+        },
+        {
+          "w": 0,
+          "b": 3,
+          "ronde": 2
+        },
+        {
+          "w": 1,
+          "b": 2,
+          "ronde": 2
+        }
       ]
     },
     "5": {
       "__comment__": "",
       "totaal_wedstrijden": 10,
       "wedstrijden": [
-        {"w": 0, "b": 1,"ronde": 0},
-        {"w": 2, "b": 3,"ronde": 0},
-        {"w": 0, "b": 4,"ronde": 1},
-        {"w": 1, "b": 2,"ronde": 1},
-        {"w": 3, "b": 4,"ronde": 2},
-        {"w": 0, "b": 2,"ronde": 2},
-        {"w": 1, "b": 3,"ronde": 3},
-        {"w": 2, "b": 4,"ronde": 3},
-        {"w": 0, "b": 3,"ronde": 4},
-        {"w": 1, "b": 4,"ronde": 4}
+        {
+          "w": 0,
+          "b": 1,
+          "ronde": 0
+        },
+        {
+          "w": 2,
+          "b": 3,
+          "ronde": 0
+        },
+        {
+          "w": 0,
+          "b": 4,
+          "ronde": 1
+        },
+        {
+          "w": 1,
+          "b": 2,
+          "ronde": 1
+        },
+        {
+          "w": 3,
+          "b": 4,
+          "ronde": 2
+        },
+        {
+          "w": 0,
+          "b": 2,
+          "ronde": 2
+        },
+        {
+          "w": 1,
+          "b": 3,
+          "ronde": 3
+        },
+        {
+          "w": 2,
+          "b": 4,
+          "ronde": 3
+        },
+        {
+          "w": 0,
+          "b": 3,
+          "ronde": 4
+        },
+        {
+          "w": 1,
+          "b": 4,
+          "ronde": 4
+        }
       ]
     }
   },
-
-  "TreeConfig:":{
-    "__comment__": "key = size of tree",
+  "TreeConfig": {
+    "__comment__": "key is size of tree",
+    "16": {
+      "__comment__": "24-40 deelnemers"
+    },
+    "32": {
+      "__comment__": "48-80 deelnemers"
+    },
     "4": {
       "__comment__": "6-10 deelnemers",
       "wedstrijden": [
-        {"id":0,"w":"A1","b": "B2","ronde": 0},
-        {"id":1,"w":"A2","b": "B1","ronde": 0},
-        {"id":2,"w":0,"b": 1,"ronde": 1}
+        {
+          "id": 0,
+          "w": "A1",
+          "b": "B2",
+          "ronde": 0
+        },
+        {
+          "id": 1,
+          "w": "A2",
+          "b": "B1",
+          "ronde": 0
+        },
+        {
+          "id": 2,
+          "w": 0,
+          "b": 1,
+          "ronde": 1
+        }
       ]
     },
     "6": {
       "__comment__": "11 deelnemers",
       "wedstrijden": [
-        {"id":0,"w":"A1","b": "B2","ronde": 0},
-        {"id":1,"w":"A2","b": "C2","ronde": 0},
-        {"id":2,"w":0,"b": "C1","ronde": 1},
-        {"id":3,"w":1,"b": "B1","ronde": 1},
-        {"__comment__":  "TODO:herkansingen (enkele)"},
-        {"id":4,"w":2,"b": 3,"ronde": 2}
+        {
+          "id": 0,
+          "w": "A1",
+          "b": "B2",
+          "ronde": 0
+        },
+        {
+          "id": 1,
+          "w": "A2",
+          "b": "C2",
+          "ronde": 0
+        },
+        {
+          "id": 2,
+          "w": 0,
+          "b": "C1",
+          "ronde": 1
+        },
+        {
+          "id": 3,
+          "w": 1,
+          "b": "B1",
+          "ronde": 1
+        },
+        {
+          "__comment__": "TODO:herkansingen (enkele)"
+        },
+        {
+          "id": 4,
+          "w": 2,
+          "b": 3,
+          "ronde": 2
+        }
       ]
     },
     "8": {
       "__comment__": "12-20 deelnemers",
       "wedstrijden": [
-        {"id":0,"w":"A1","b": "B2","ronde": 0},
-        {"id":1,"w":"C1","b": "D2","ronde": 0},
-        {"id":2,"w":"A2","b": "B1","ronde": 0},
-        {"id":3,"w":"C2","b": "D1","ronde": 0},
-        {"id":4,"w":0,"b": 1,"ronde": 1},
-        {"id":5,"w":2,"b": 3,"ronde": 1},
-        {"__comment__":  "TODO:herkansingen"},
-        {"id":6,"w":4,"b": 5,"ronde": 3}
+        {
+          "id": 0,
+          "w": "A1",
+          "b": "B2",
+          "ronde": 0
+        },
+        {
+          "id": 1,
+          "w": "C1",
+          "b": "D2",
+          "ronde": 0
+        },
+        {
+          "id": 2,
+          "w": "A2",
+          "b": "B1",
+          "ronde": 0
+        },
+        {
+          "id": 3,
+          "w": "C2",
+          "b": "D1",
+          "ronde": 0
+        },
+        {
+          "id": 4,
+          "w": 0,
+          "b": 1,
+          "ronde": 1
+        },
+        {
+          "id": 5,
+          "w": 2,
+          "b": 3,
+          "ronde": 1
+        },
+        {
+          "__comment__": "TODO:herkansingen"
+        },
+        {
+          "id": 6,
+          "w": 4,
+          "b": 5,
+          "ronde": 3
+        }
       ]
-    },
-    "12": {
-      "__comment__": "21-23 deelnemers"
-    },
-    "16": {
-      "__comment__": "24-40 deelnemers"
     },
     "24": {
       "__comment__": "41-47 deelnemers"
     },
-    "32": {
-      "__comment__": "48-80 deelnemers"
+    "12": {
+      "__comment__": "21-23 deelnemers"
     }
   }
 }
