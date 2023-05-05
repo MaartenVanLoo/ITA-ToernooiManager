@@ -1,6 +1,6 @@
-package be.ita.toernooimanager.repositories;
+package be.ita.toernooimanager.repositories.shiai;
 
-import be.ita.toernooimanager.model.CatdefObject;
+import be.ita.toernooimanager.model.shiai.CatdefObject;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

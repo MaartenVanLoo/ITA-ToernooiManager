@@ -1,7 +1,7 @@
 package be.ita.toernooimanager.controller;
 
-import be.ita.toernooimanager.model.CompetitorsEntity;
-import be.ita.toernooimanager.service.CompetitorsService;
+import be.ita.toernooimanager.model.shiai.CompetitorsEntity;
+import be.ita.toernooimanager.service.shiai.CompetitorsService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

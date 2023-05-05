@@ -1,7 +1,7 @@
-package be.ita.toernooimanager.service;
+package be.ita.toernooimanager.service.shiai;
 
-import be.ita.toernooimanager.model.CompetitorsEntity;
-import be.ita.toernooimanager.repositories.CompetitorsRepository;
+import be.ita.toernooimanager.model.shiai.CompetitorsEntity;
+import be.ita.toernooimanager.repositories.shiai.CompetitorsRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

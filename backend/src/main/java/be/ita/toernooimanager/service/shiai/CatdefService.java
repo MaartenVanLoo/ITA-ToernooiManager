@@ -1,9 +1,9 @@
-package be.ita.toernooimanager.service;
+package be.ita.toernooimanager.service.shiai;
 
 
-import be.ita.toernooimanager.model.CatdefEntity;
-import be.ita.toernooimanager.repositories.CatdefRepository;
-import be.ita.toernooimanager.service.mapper.CatdefMapper;
+import be.ita.toernooimanager.model.shiai.CatdefEntity;
+import be.ita.toernooimanager.repositories.shiai.CatdefRepository;
+import be.ita.toernooimanager.service.shiai.mapper.CatdefMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
 package be.ita.toernooimanager.controller;
 
-import be.ita.toernooimanager.model.CatdefEntity;
-import be.ita.toernooimanager.service.CatdefService;
-import be.ita.toernooimanager.service.mapper.CatdefMapper;
+import be.ita.toernooimanager.model.shiai.CatdefEntity;
+import be.ita.toernooimanager.service.shiai.CatdefService;
+import be.ita.toernooimanager.service.shiai.mapper.CatdefMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

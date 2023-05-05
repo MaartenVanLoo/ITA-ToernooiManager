@@ -1,8 +1,8 @@
-package be.ita.toernooimanager.service.mapper;
+package be.ita.toernooimanager.service.shiai.mapper;
 
 import be.ita.toernooimanager.controller.DTO.GetCatdefDto;
-import be.ita.toernooimanager.model.CatdefEntity;
-import be.ita.toernooimanager.model.CatdefObject;
+import be.ita.toernooimanager.model.shiai.CatdefEntity;
+import be.ita.toernooimanager.model.shiai.CatdefObject;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

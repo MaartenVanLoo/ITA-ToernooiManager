@@ -1,4 +1,4 @@
-package be.ita.toernooimanager.model;
+package be.ita.toernooimanager.model.shiai;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
