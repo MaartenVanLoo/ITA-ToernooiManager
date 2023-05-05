@@ -16,6 +16,15 @@ const config = {
       icon: 'mdi-home',
       allowedRoles: ['Any'],
     },
+    {
+      name: 'divider'
+    },
+    {
+      name: 'Settings',
+      location: '/settings',
+      icon: 'mdi-cog-outline',
+      allowedRoles: ['Any'],
+    },
   ],
   DATA_STATIC: false,
 }
