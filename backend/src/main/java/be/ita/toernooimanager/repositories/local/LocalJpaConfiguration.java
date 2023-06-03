@@ -1,8 +1,5 @@
 package be.ita.toernooimanager.repositories.local;
 
-import be.ita.toernooimanager.model.local.acl.Privilege;
-import be.ita.toernooimanager.model.local.acl.Role;
-import be.ita.toernooimanager.model.local.acl.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
