@@ -1,11 +1,8 @@
 package be.ita.toernooimanager.service.util.partitioning;
 
-import be.ita.toernooimanager.service.util.partitioning.AlgorithmUnknownException;
-import be.ita.toernooimanager.service.util.partitioning.IdNumber;
-import be.ita.toernooimanager.service.util.partitioning.NoBinsException;
-import be.ita.toernooimanager.service.util.partitioning.Partition;
+import be.ita.toernooimanager.service.util.partitioning.Exceptions.AlgorithmUnknownException;
+import be.ita.toernooimanager.service.util.partitioning.Exceptions.NoBinsException;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

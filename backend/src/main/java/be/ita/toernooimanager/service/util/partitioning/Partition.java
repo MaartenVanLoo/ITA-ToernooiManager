@@ -1,7 +1,7 @@
 package be.ita.toernooimanager.service.util.partitioning;
 
-import jakarta.persistence.Id;
-import lombok.AccessLevel;
+import be.ita.toernooimanager.service.util.partitioning.Exceptions.AlgorithmUnknownException;
+import be.ita.toernooimanager.service.util.partitioning.Exceptions.NoBinsException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +22,11 @@ public class Partition {
 
     }
 
+    /** flag of DSTree() completion by limit */
+    final static byte LIM_FLAG = 0x1;
+    /** flag of DSTree() completion by 'perfect' result */
+    final static byte PERF_FLAG = 0x2;
+
     @Getter
     @Setter
     private long callLimit = -1; //max calls for dsTree ( value <= 0 = infinite calls (until overflow of long :p) );
@@ -30,25 +35,32 @@ public class Partition {
     @Getter
     private long callCount; //current number of calls for dsTree
 
+    float target;
+    boolean targetIsFraction;
 
     private long minSum; //Lower bin size for dsTree
     private long maxSum; //Upper bin size for dsTree
     @Getter
     private long range; //The value we want to minimize
-
+    private long numbersSum; //Sum of all values in "numbers"
 
     private List<IdNumber> numbers;
     private Flags flag = Flags.NONE;
+    byte complete;
+    void raiseComplFlag(byte flag) { complete |= flag; }
+    boolean isCompleteByPerfect() { return (complete & PERF_FLAG) != 0; }
+    boolean isResultPerfect() { return this.range == 0 || (this.targetIsFraction && this.range == 1); }
 
     @Getter
     @Setter
     private int binCount=5;
 
-    private List<Bin> bins;
-
 
     // Result of calculation
-    PartitionResult result;
+    Result currentResult;   //Working result object
+    Result bestResult;      // Best result in a certain itertion (used in DSTree)
+    Result finalResult;     // Overall best result
+
 
     public Partition() {}
 
@@ -65,7 +77,7 @@ public class Partition {
 
         if (this.numbers.size() < this.binCount){ //In this case greedy = optimal
             this.greedy();
-            return this.result.getNumbers();
+            return this.finalResult.numbers;
         }
 
         if (method == Algorithm.GREEDY){    //O(n)
@@ -79,8 +91,7 @@ public class Partition {
             this.greedy();
             if (this.flag != Flags.COMPLETE) { //Flag = complete if greedy range = 0
                 //Reset all numbers & bins to restart partition but keep current ranges!
-                this.numbers.forEach(IdNumber::reset);
-                this.bins.forEach(Bin::reset);
+                this.currentResult.reset();
                 this.dsTree(0, this.binCount-1); //Limit the initial boundaries by first computing greedy (O(n)) followed by dsTree(O(n!))
             }
         }else if (method==Algorithm.ISTREE){
@@ -91,30 +102,38 @@ public class Partition {
             throw new AlgorithmUnknownException();
         }
 
-        return this.result.getNumbers();
+        return this.finalResult.getNumbers();
     }
     private void initCompute(){
         //Reset all numbers
         this.numbers.forEach(IdNumber::reset);
         this.numbers.sort(Collections.reverseOrder());
 
-        //Create bins
-        this.bins = new ArrayList<>();
-        //asign bins the id which corresponds to their index
+        //Create result objects
+        this.currentResult = new Result(this.numbers);
+        this.bestResult = new Result(this.numbers);
+        this.finalResult = new Result(this.numbers);
+
+        // Create bins
+        this.currentResult.bins = new ArrayList<>();
+        // assign bins the id which corresponds to their index
         for (int i = 0; i < this.binCount; i++){
-            this.bins.add(new Bin(i));
+            this.currentResult.bins.add(new Bin(i));
         }
 
         //Reset counter
         this.callCount = 0;
         this.bottomCalls = 0;
         this.minSum=0;
+
         this.maxSum = Integer.MAX_VALUE;
         this.range = this.maxSum - this.minSum;
         this.flag = Flags.NONE;
+        this.complete = 0;
 
-        //Create result variable
-        this.result= new PartitionResult(this.numbers);
+        this.numbersSum = this.numbers.stream().mapToInt(IdNumber::getValue).sum();
+        this.target = (float)this.numbersSum/this.binCount;
+        this.targetIsFraction = (int)this.target != this.target;
     }
 
     /**
@@ -123,17 +142,21 @@ public class Partition {
     private void greedy(){
         for (IdNumber number : this.numbers){
             // Look for smallest bin
-            Bin smallestBin = getSmallestBin();
+            Bin smallestBin = getSmallestBin(currentResult.bins);
             //append number to the smallest bin
             smallestBin.addNumber(number);
         }
-        Range range = this.computeRange(this.bins);
+        Range range = currentResult.computeRange();
         this.minSum = range.getMin();
         this.maxSum = range.getMax();
         this.range = this.maxSum - this.minSum;
 
-        this.result.update(this.numbers);
-        if (this.range == 0) this.flag = Flags.COMPLETE; //perfect solution found => terminate computation
+        this.finalResult.updateNumbers(this.numbers);
+        this.finalResult.updateRange(range);
+        if (this.isResultPerfect()) {
+            this.flag = Flags.COMPLETE; //perfect solution found => terminate computation
+            this.raiseComplFlag(PERF_FLAG);
+        }
 
         this.callCount += this.binCount; // Would be the same as a recursion with depth n
     }
@@ -142,23 +165,28 @@ public class Partition {
      * Dynamic search tree
      */
     private void dsTree(int number_index, int bin_index){
-        if (this.flag != Flags.NONE) return;
-
+        //if (this.flag != Flags.NONE) return;
+        if (complete != 0) return;
         if (++ this.callCount == callLimit){
+            raiseComplFlag(LIM_FLAG);
             this.flag = Flags.LIMIT;
             return;
         }
 
-        Bin curr_bin = this.bins.get(bin_index);
-        if (bin_index > 0){ //Not last bin
-            for (int i = number_index; i < this.numbers.size(); i++){       //Loop through the numbers starting from the current one
-                IdNumber number = this.numbers.get(i);
+        Bin curr_bin = this.currentResult.bins.get(bin_index);
+        if (bin_index != 0){ //Not last bin
+            if (this.currentResult.getLastNumber().getValue() + curr_bin.currentSize >= this.maxSum) return; //Every value will fail to be added to this bin, hence no need to check them all
+            for (int i = number_index; i < this.currentResult.numbers.size(); i++){       //Loop through the numbers starting from the current one
+                IdNumber number = this.currentResult.numbers.get(i);
                 if (number.binId == 0 && number.getValue() + curr_bin.getCurrentSize() < this.maxSum){
                     // number = unassigned (all unassigned values are in the 'last bin') &&
                     // adding this number to the current bin will not go over the upper bin limit
-                    curr_bin.addNumber(number);     //Add number to this bin
+                    //curr_bin.addNumber(number);     //Add number to this bin
+                    curr_bin.currentSize += number.value;
+                    curr_bin.count++;
+                    number.binId = bin_index;
 
-                    if (number_index+1 != this.numbers.size()){ // Check to make sure the last value isn't reached
+                    if (number_index+1 < this.numbers.size()){ // Check to make sure the last value isn't reached
                         this.dsTree(number_index+1,bin_index);  // Try to fit the next value in the current bin
                     }
 
@@ -166,34 +194,44 @@ public class Partition {
                         this.dsTree(0,bin_index-1); //start filling the next bin
                     }
 
-                    curr_bin.removeNumber(number); //Remove the number from the bin
+                    //curr_bin.removeNumber(number); //Remove the number from the bin
+                    curr_bin.currentSize -= number.value;
+                    curr_bin.count--;
+                    number.binId = 0;
                 }
             }
         }else{ //Last bin
             this.bottomCalls++;
             //accumulate sum for the last bin
-            for (IdNumber number : this.numbers){
-                if (number.binId == 0) curr_bin.currentSize+=number.value;
+            //for (IdNumber number : this.currentResult.numbers){
+            //    if (number.binId == 0) curr_bin.currentSize+=number.value;
+            //}
+            long binSum = 0;
+            for (Bin bin : this.currentResult.bins){
+                if (bin.index == 0) continue;
+                binSum += bin.currentSize;
             }
+            curr_bin.currentSize = (int)(this.numbersSum - binSum);
 
             //compute range from this iteration
-            Range range = this.computeRange(this.bins);
-            long curr_min = range.getMin();
-            long curr_max = range.getMax();
-            long curr_range = curr_max - curr_min;
+            Range range = this.currentResult.computeRange();
 
-            if (curr_range < this.range){
-                this.minSum = curr_min;
-                this.maxSum = curr_max;
-                this.range = curr_range;
-                this.result.update(this.numbers); //copy current state
-
-                if (this.range == 0) this.flag = Flags.COMPLETE; //perfect solution found => terminate computation
+            if (range.getRange() < this.finalResult.range.getRange()){
+                this.minSum = range.min;
+                this.maxSum = range.max;
+                this.range = range.getRange();
+                this.bestResult.updateNumbers(this.numbers); //copy current state
+                this.bestResult.updateRange(range);
+                this.finalResult.updateNumbers(this.numbers); //copy current state
+                this.finalResult.updateRange(range);
+                if (isResultPerfect()) raiseComplFlag(PERF_FLAG); //this.flag = Flags.COMPLETE; //perfect solution found => terminate computation
+            }else if (range.getRange() < this.bestResult.range.getRange()){
+                this.bestResult.updateNumbers(this.numbers); //copy current state
+                this.bestResult.updateRange(range);
             }
 
             curr_bin.reset(); //reset last bin
         }
-
     }
 
     /**
@@ -204,12 +242,11 @@ public class Partition {
         this.greedy();
         if (this.flag == Flags.COMPLETE) return; //Flag = complete if greedy range = 0
 
-        double target = (double)this.numbers.stream().mapToInt(IdNumber::getValue).sum()/this.binCount;
+
         int margin = target < this.numbers.get(0).value?
                 this.numbers.get(0).value - (int)target + 2 : 1;
 
-        long prevIterationRange = this.range; //result from greedy!
-        PartitionResult prevIterationResult = new PartitionResult(this.result.numbers); //save result from greedy!
+        this.bestResult.range = new Range();
 
         long limitPerIteration = this.callLimit;
         long totalCalls = 0;
@@ -219,37 +256,33 @@ public class Partition {
             totalCalls += this.callCount;
             this.callCount = 0;
             this.flag = Flags.NONE;
+            this.complete=0;
 
             //Reset all numbers & bins
-            this.numbers.forEach(IdNumber::reset);
-            this.bins.forEach(Bin::reset);
+            this.currentResult.reset();
+
             //Set boundaries for this iteration
             this.minSum = (long)(target - margin);
             this.maxSum = (long)(target + margin);
 
+            long start = System.currentTimeMillis();
             this.dsTree(0, this.binCount-1);
-            if (this.flag == Flags.COMPLETE      // Perfect result found
-            || (margin*=2) >= prevIterationRange       // Expanding would yield minimum values below ?0
-            || this.range > prevIterationRange){ // Prev itt was better
-                break;
-            }
-            if (this.range < prevIterationRange){ //Better solution found
-                break;
-            }
-            //save this iteration if
-            prevIterationRange = this.range; //result from greedy!
-            prevIterationResult.update(this.result.numbers); //save result from greedy!
-        } while(true);
-        this.callCount += totalCalls;
-        if (this.range < prevIterationRange) return; //best result from last iteration already stored
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            if (this.callCount >= 1e6) System.out.println("Elapsed dstree: \t" + timeElapsed);
 
-        //Prev iteration was better; replace the current one
-        this.result.update(prevIterationResult.numbers);
-        this.range = prevIterationRange;
+            if (isCompleteByPerfect()      // Perfect result found
+            || (margin*=2) >= this.minSum       // Expanding would yield minimum values below ?0
+            || this.currentResult.range.getRange() > this.bestResult.range.getRange()){ // Prev itt was better
+                break;
+            }
+        } while(this.currentResult.range.getRange() != this.finalResult.range.getRange());
+        this.callCount += totalCalls;
+
     }
     //region Utilities
-    private Bin getSmallestBin(){
-        return this.bins.stream().min(Comparator.comparing(Bin::getCurrentSize))
+    private Bin getSmallestBin(List<Bin> bins){
+        return bins.stream().min(Comparator.comparing(Bin::getCurrentSize))
                 .orElseThrow(NoSuchElementException::new);
     }
 

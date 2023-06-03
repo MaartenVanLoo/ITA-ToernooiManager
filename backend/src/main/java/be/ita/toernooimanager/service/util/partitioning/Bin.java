@@ -1,9 +1,9 @@
 package be.ita.toernooimanager.service.util.partitioning;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 
 @Getter
@@ -11,6 +11,7 @@ import java.util.Comparator;
 class Bin {
     int index;
     int currentSize;
+    int count;
 
     public Bin(int index) {
         this.index = index;
@@ -34,6 +35,7 @@ class Bin {
 
 @Getter
 @Setter
+@NoArgsConstructor
 class Range{
     long min = Long.MAX_VALUE;
     long max = 0;
@@ -43,6 +45,9 @@ class Range{
     }
     public void reset(long initial){
         this.min = this.max = initial;
+    }
+    public long getRange(){
+        return this.max - this.min;
     }
 }
 

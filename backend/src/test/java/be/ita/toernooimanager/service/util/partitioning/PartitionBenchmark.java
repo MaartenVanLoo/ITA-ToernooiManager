@@ -1,19 +1,18 @@
 package be.ita.toernooimanager.service.util.partitioning;
 
 
+import be.ita.toernooimanager.service.util.partitioning.Exceptions.AlgorithmUnknownException;
+import be.ita.toernooimanager.service.util.partitioning.Exceptions.NoBinsException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.Stopwatch;
 
-import java.sql.Array;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class PartitionBenchmark {
@@ -21,7 +20,7 @@ public class PartitionBenchmark {
     long seed = 0;
     @BeforeEach
     void setUp() {
-        this.seed = 0xFA13C;
+        this.seed = 0xF6514A1;
     }
 
     @AfterEach
@@ -35,10 +34,10 @@ public class PartitionBenchmark {
         MessageFormat combinedMessage = new MessageFormat("Combined:\tBins:{0}\tSamples:{1}.");
         MessageFormat isTreeMessage = new MessageFormat("ISTree:\tBins:{0}\tSamples:{1}.");
 
-        //int[] binCounts = new int[]{2,4,6,8};
-        int[] binCounts = new int[]{10};
-        //int[] sampleCounts = new int[]{5,10,30,50,100};
-        int[] sampleCounts = new int[]{1000};
+        int[] binCounts = new int[]{4};
+        //int[] binCounts = new int[]{50};
+        int[] sampleCounts = new int[]{5,10,15,30,50,100};
+        //int[] sampleCounts = new int[]{1000};
 
         List<List<String>> rows = new ArrayList<>();
         List<String> headers = Arrays.asList("bins","samples","|","","Greedy","","|","","DsTree","","|","","Combined","","|","","IsTree","");
@@ -46,7 +45,7 @@ public class PartitionBenchmark {
         rows.add(headers);
         rows.add(subheaders);
 
-        Random random= new Random(seed);
+        Random random= new Random();
         for (int sampleCount: sampleCounts) {
             List<Integer> numbers = random.ints(sampleCount, 50, 500)
                     .boxed()
