@@ -75,4 +75,12 @@ class IdNumber implements Comparable<IdNumber> {
     public int compareTo(IdNumber o) {
         return this.getValue().compareTo(o.getValue());
     }
+
+    @Override
+    public String toString() {
+        return "IdNumber{" +
+                "value=" + value +
+                ", binId=" + binId +
+                '}';
+    }
 }
