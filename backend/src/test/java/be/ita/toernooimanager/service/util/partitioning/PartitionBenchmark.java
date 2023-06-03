@@ -4,7 +4,6 @@ package be.ita.toernooimanager.service.util.partitioning;
 import be.ita.toernooimanager.service.util.partitioning.Exceptions.AlgorithmUnknownException;
 import be.ita.toernooimanager.service.util.partitioning.Exceptions.NoBinsException;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,16 +14,12 @@ import java.util.List;
 import java.util.Random;
 
 @Slf4j
-public class PartitionIntegrationBenchmark {
+public class PartitionBenchmark {
     final long maxCallCount = (long) 1e6;
     long seed = 0;
     @BeforeEach
     void setUp() {
         this.seed = 0x14654684;
-    }
-
-    @AfterEach
-    void tearDown() {
     }
 
     @Test
@@ -103,7 +98,7 @@ public class PartitionIntegrationBenchmark {
                 }
             }
         }
-        System.out.println(PartitionIntegrationBenchmark.formatAsTable(rows));
+        System.out.println(PartitionBenchmark.formatAsTable(rows));
     }
 
     public static String formatAsTable(List<List<String>> rows)
