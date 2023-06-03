@@ -21,7 +21,8 @@
     "vue-phone-number-input": "^1.12.13",
     "vue-router": "^4.0.0",
     "vuetify": "^3.0.0",
-    "webfontloader": "^1.0.0"
+    "webfontloader": "^1.0.0",
+    "mqtt": "4.3.7"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",

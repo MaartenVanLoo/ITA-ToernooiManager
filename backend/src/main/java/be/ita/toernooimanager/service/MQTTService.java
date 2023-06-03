@@ -11,7 +11,7 @@ import java.util.UUID;
 @Service
 @Slf4j
 public class MQTTService {
-    @Value("${mqtt.address:'broker.hivemq.com'}")
+    @Value("${mqtt.address:broker.hivemq.com}")
     protected String remote;
 
     @Value("${mqtt.port:1883}")
@@ -33,7 +33,7 @@ public class MQTTService {
      *  1: At least once
      *  2: Exactly once
      */
-    @Value("${mqtt.qos:0")
+    @Value("${mqtt.qos:0}")
     protected int qos;
 
 

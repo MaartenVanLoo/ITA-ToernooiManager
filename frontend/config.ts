@@ -26,6 +26,10 @@ const config = {
       allowedRoles: ['Any'],
     },
   ],
+  MQTT:{
+    REMOTE:"broker.hivemq.com",
+    PORT:1883,
+  },
   DATA_STATIC: false,
 }
 
