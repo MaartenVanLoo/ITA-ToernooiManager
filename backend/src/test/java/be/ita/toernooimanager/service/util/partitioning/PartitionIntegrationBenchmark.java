@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 @Slf4j
-public class PartitionBenchmark {
+public class PartitionIntegrationBenchmark {
     final long maxCallCount = (long) 1e6;
     long seed = 0;
     @BeforeEach
@@ -31,7 +31,6 @@ public class PartitionBenchmark {
     public void benchmark() throws AlgorithmUnknownException, NoBinsException {
         MessageFormat greedyMessage = new MessageFormat("Greedy:\tBins:{0}\tSamples:{1}.");
         MessageFormat dsTreeMessage = new MessageFormat("DSTree:\tBins:{0}\tSamples:{1}.");
-        MessageFormat combinedMessage = new MessageFormat("Combined:\tBins:{0}\tSamples:{1}.");
         MessageFormat isTreeMessage = new MessageFormat("ISTree:\tBins:{0}\tSamples:{1}.");
 
         int[] binCounts = new int[]{2,4,6,8,12};
@@ -64,7 +63,7 @@ public class PartitionBenchmark {
                     //Greedy
                     log.info(greedyMessage.format(new Object[]{binCount, sampleCount}));
                     long start = System.currentTimeMillis();
-                    List<IdNumber> greedy = partition.compute(Partition.Algorithm.GREEDY);
+                    partition.compute(Partition.Algorithm.GREEDY);
                     long finish = System.currentTimeMillis();
                     long timeElapsed = finish - start;
                     log.info("\tCalls: " + partition.getCallCount() + "\tBottomCalls: " + partition.getBottomCalls());
@@ -77,10 +76,10 @@ public class PartitionBenchmark {
                 {
                     log.info(dsTreeMessage.format(new Object[]{binCount, sampleCount}));
                     long start = System.currentTimeMillis();
-                    List<IdNumber> dsTree = partition.compute(Partition.Algorithm.DSTREE);
+                    partition.compute(Partition.Algorithm.DSTREE);
                     long finish = System.currentTimeMillis();
                     long timeElapsed = finish - start;
-                    log.info("\tCalls: " + partition.getCallCount() + "\tBottomCalls: " + String.valueOf(partition.getBottomCalls()));
+                    log.info("\tCalls: " + partition.getCallCount() + "\tBottomCalls: " + partition.getBottomCalls());
                     row.add("|");
                     row.add(String.valueOf(partition.getRange()));
                     row.add(String.valueOf(timeElapsed));
@@ -91,7 +90,7 @@ public class PartitionBenchmark {
                 {
                     log.info(isTreeMessage.format(new Object[]{binCount, sampleCount}));
                     long start = System.currentTimeMillis();
-                    List<IdNumber> isTree = partition.compute(Partition.Algorithm.ISTREE);
+                    partition.compute(Partition.Algorithm.ISTREE);
                     long finish = System.currentTimeMillis();
                     long timeElapsed = finish - start;
                     log.info("\tCalls: " + partition.getCallCount() + "\tBottomCalls: " + partition.getBottomCalls());
@@ -104,7 +103,7 @@ public class PartitionBenchmark {
                 }
             }
         }
-        System.out.println(PartitionBenchmark.formatAsTable(rows));
+        System.out.println(PartitionIntegrationBenchmark.formatAsTable(rows));
     }
 
     public static String formatAsTable(List<List<String>> rows)

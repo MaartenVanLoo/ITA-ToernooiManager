@@ -16,9 +16,7 @@ public class Partition {
     private enum Flags{
         NONE ,
         COMPLETE,
-        LIMIT;
-
-
+        LIMIT
     }
 
     /** flag of DSTree() completion by limit */

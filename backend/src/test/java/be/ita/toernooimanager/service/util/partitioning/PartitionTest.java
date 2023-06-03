@@ -30,7 +30,7 @@ class PartitionTest {
         partition.setNumbers(numbers);
         partition.setBinCount(3);
         try {
-            List<IdNumber> result = partition.compute(Partition.Algorithm.GREEDY);
+            partition.compute(Partition.Algorithm.GREEDY);
         }catch(AlgorithmUnknownException | NoBinsException e){
             e.printStackTrace();
             fail(); //Should not throw exception
@@ -47,7 +47,7 @@ class PartitionTest {
         partition.setNumbers(numbers);
         partition.setBinCount(3);
         try {
-            List<IdNumber> result = partition.compute(Partition.Algorithm.DSTREE);
+            partition.compute(Partition.Algorithm.DSTREE);
         }catch(AlgorithmUnknownException | NoBinsException e){
             e.printStackTrace();
             fail(); //Should not throw exception
@@ -64,7 +64,7 @@ class PartitionTest {
         partition.setNumbers(numbers);
         partition.setBinCount(3);
         try {
-            List<IdNumber> result = partition.compute(Partition.Algorithm.ISTREE);
+            partition.compute(Partition.Algorithm.ISTREE);
         }catch(AlgorithmUnknownException | NoBinsException e){
             e.printStackTrace();
             fail(); //Should not throw exception
