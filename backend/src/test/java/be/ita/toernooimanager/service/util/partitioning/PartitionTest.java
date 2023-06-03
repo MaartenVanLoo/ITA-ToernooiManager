@@ -56,22 +56,6 @@ class PartitionTest {
         assertEquals(0,partition.getRange());
         log.info("DSTree call count " + partition.getCallCount());
     }
-    @Test
-    void testGreedyDSTree(){
-        Partition partition = new Partition();
-        List<Integer> numbers= Arrays.asList(3,4,5,6,7,10,11,12,13,15,16,19,20);
-        partition.setNumbers(numbers);
-        partition.setBinCount(3);
-        try {
-            List<IdNumber> result = partition.compute(Partition.Algorithm.GREEDY_DSTREE);
-        }catch(AlgorithmUnknownException | NoBinsException e){
-            e.printStackTrace();
-            fail(); //Should not throw exception
-        }
-
-        assertEquals(0,partition.getRange());
-        log.info("GreedyDSTree call count " + partition.getCallCount());
-    }
 
     @Test
     void testISTree(){

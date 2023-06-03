@@ -1,5 +1,6 @@
 package be.ita.toernooimanager.service.util.partitioning;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,6 @@ import java.util.Comparator;
 class Bin {
     int index;
     int currentSize;
-    int count;
 
     public Bin(int index) {
         this.index = index;
@@ -34,8 +34,8 @@ class Bin {
 
 
 @Getter
-@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 class Range{
     long min = Long.MAX_VALUE;
     long max = 0;
@@ -53,7 +53,7 @@ class Range{
 
 @Getter
 @Setter
-class IdNumber implements Comparable<IdNumber>, Comparator<IdNumber> {
+class IdNumber implements Comparable<IdNumber> {
     Integer value;
     int binId=0;
 
@@ -76,10 +76,5 @@ class IdNumber implements Comparable<IdNumber>, Comparator<IdNumber> {
     @Override
     public int compareTo(IdNumber o) {
         return this.getValue().compareTo(o.getValue());
-    }
-
-    @Override
-    public int compare(IdNumber o1, IdNumber o2) {
-        return o1.getValue() - o2.getValue();
     }
 }

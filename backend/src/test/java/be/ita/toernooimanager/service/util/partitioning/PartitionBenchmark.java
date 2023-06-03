@@ -20,7 +20,7 @@ public class PartitionBenchmark {
     long seed = 0;
     @BeforeEach
     void setUp() {
-        this.seed = 0xF6514A1;
+        this.seed = 0x14654684;
     }
 
     @AfterEach
@@ -34,20 +34,22 @@ public class PartitionBenchmark {
         MessageFormat combinedMessage = new MessageFormat("Combined:\tBins:{0}\tSamples:{1}.");
         MessageFormat isTreeMessage = new MessageFormat("ISTree:\tBins:{0}\tSamples:{1}.");
 
-        int[] binCounts = new int[]{4};
+        int[] binCounts = new int[]{2,4,6,8,12};
         //int[] binCounts = new int[]{50};
         int[] sampleCounts = new int[]{5,10,15,30,50,100};
         //int[] sampleCounts = new int[]{1000};
+        int minVal = 3;
+        int maxVal = 100;
 
         List<List<String>> rows = new ArrayList<>();
-        List<String> headers = Arrays.asList("bins","samples","|","","Greedy","","|","","DsTree","","|","","Combined","","|","","IsTree","");
-        List<String> subheaders = Arrays.asList("","","|","Range","Time","Calls","|","Range","Time","Calls","|","Range","Time","Calls","|","Range","Time","Calls");
+        List<String> headers = Arrays.asList("bins","samples","|","","Greedy","","|","","DsTree","","|","","IsTree","");
+        List<String> subheaders = Arrays.asList("","","|","Range","Time","Calls","|","Range","Time","Calls","|","Range","Time","Calls");
         rows.add(headers);
         rows.add(subheaders);
 
-        Random random= new Random();
+        Random random= new Random(seed);
         for (int sampleCount: sampleCounts) {
-            List<Integer> numbers = random.ints(sampleCount, 50, 500)
+            List<Integer> numbers = random.ints(sampleCount, minVal, maxVal)
                     .boxed()
                     .toList();
             for (int binCount : binCounts){
@@ -85,19 +87,6 @@ public class PartitionBenchmark {
                     row.add(String.valueOf(partition.getCallCount()));
                 }
 
-                // Combined
-                {
-                    log.info(combinedMessage.format(new Object[]{binCount, sampleCount}));
-                    long start = System.currentTimeMillis();
-                    List<IdNumber> greedyDSTree = partition.compute(Partition.Algorithm.GREEDY_DSTREE);
-                    long finish = System.currentTimeMillis();
-                    long timeElapsed = finish - start;
-                    log.info("\tCalls: " + partition.getCallCount() + "\tBottomCalls: " + partition.getBottomCalls());
-                    row.add("|");
-                    row.add(String.valueOf(partition.getRange()));
-                    row.add(String.valueOf(timeElapsed));
-                    row.add(String.valueOf(partition.getCallCount()));
-                }
                 // IS Tree
                 {
                     log.info(isTreeMessage.format(new Object[]{binCount, sampleCount}));
@@ -140,7 +129,7 @@ public class PartitionBenchmark {
         StringBuilder result = new StringBuilder();
         for (List<String> row : rows)
         {
-            result.append(String.format(format, row.toArray(new String[0]))).append("\n");
+            result.append(String.format(format, (Object[]) row.toArray(new String[0]))).append("\n");
         }
         return result.toString();
     }

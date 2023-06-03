@@ -9,10 +9,9 @@ import java.util.*;
 
 public class Partition {
     public enum Algorithm {
-        GREEDY,       //only greedy
-        DSTREE,       //only DS tree
-        ISTREE,       //only IS tree
-        GREEDY_DSTREE //Combined greedy dstree
+        GREEDY,       // only greedy
+        DSTREE,       // DS tree
+        ISTREE,       // only IS tree
     }
     private enum Flags{
         NONE ,
@@ -82,19 +81,14 @@ public class Partition {
 
         if (method == Algorithm.GREEDY){    //O(n)
             this.greedy();
-        } else if (method == Algorithm.DSTREE) { //O(n!)
-            //We can estimate the maximum value of a single bin to be no more than the average value + the largest value.
-            double sum = (double) this.numbers.stream().mapToInt(IdNumber::getValue).sum();
-            this.maxSum = (long)(Math.max(Math.ceil(sum/this.binCount) + this.numbers.get(this.numbers.size() -1 ).getValue(),this.numbers.get(this.numbers.size()-1).getValue()));
-            this.dsTree(0, this.binCount-1);
-        } else if (method == Algorithm.GREEDY_DSTREE){ // O(n!) but should be faster //TODO: test if faster
+        } else if (method == Algorithm.DSTREE){ // O(n!) but should be faster
             this.greedy();
             if (this.flag != Flags.COMPLETE) { //Flag = complete if greedy range = 0
                 //Reset all numbers & bins to restart partition but keep current ranges!
                 this.currentResult.reset();
                 this.dsTree(0, this.binCount-1); //Limit the initial boundaries by first computing greedy (O(n)) followed by dsTree(O(n!))
             }
-        }else if (method==Algorithm.ISTREE){
+        } else if (method==Algorithm.ISTREE){
 
             this.isTree(); //Limit the initial boundaries by first computing greedy (O(n)) followed by dsTree(O(n!))
 
@@ -181,10 +175,9 @@ public class Partition {
                 if (number.binId == 0 && number.getValue() + curr_bin.getCurrentSize() < this.maxSum){
                     // number = unassigned (all unassigned values are in the 'last bin') &&
                     // adding this number to the current bin will not go over the upper bin limit
-                    //curr_bin.addNumber(number);     //Add number to this bin
-                    curr_bin.currentSize += number.value;
-                    curr_bin.count++;
-                    number.binId = bin_index;
+                    curr_bin.addNumber(number);     //Add number to this bin
+                    //curr_bin.currentSize += number.value;
+                    //number.binId = bin_index;
 
                     if (number_index+1 < this.numbers.size()){ // Check to make sure the last value isn't reached
                         this.dsTree(number_index+1,bin_index);  // Try to fit the next value in the current bin
@@ -194,18 +187,14 @@ public class Partition {
                         this.dsTree(0,bin_index-1); //start filling the next bin
                     }
 
-                    //curr_bin.removeNumber(number); //Remove the number from the bin
-                    curr_bin.currentSize -= number.value;
-                    curr_bin.count--;
-                    number.binId = 0;
+                    curr_bin.removeNumber(number); //Remove the number from the bin
+                    //curr_bin.currentSize -= number.value;
+                    //number.binId = 0;
                 }
             }
         }else{ //Last bin
             this.bottomCalls++;
-            //accumulate sum for the last bin
-            //for (IdNumber number : this.currentResult.numbers){
-            //    if (number.binId == 0) curr_bin.currentSize+=number.value;
-            //}
+            // size of last bin = total sum - size of other bins
             long binSum = 0;
             for (Bin bin : this.currentResult.bins){
                 if (bin.index == 0) continue;
@@ -246,9 +235,8 @@ public class Partition {
         int margin = target < this.numbers.get(0).value?
                 this.numbers.get(0).value - (int)target + 2 : 1;
 
-        this.bestResult.range = new Range();
+        this.bestResult.range = new Range(0, Long.MAX_VALUE);
 
-        long limitPerIteration = this.callLimit;
         long totalCalls = 0;
         //do iterations
         do{
@@ -265,18 +253,14 @@ public class Partition {
             this.minSum = (long)(target - margin);
             this.maxSum = (long)(target + margin);
 
-            long start = System.currentTimeMillis();
             this.dsTree(0, this.binCount-1);
-            long finish = System.currentTimeMillis();
-            long timeElapsed = finish - start;
-            if (this.callCount >= 1e6) System.out.println("Elapsed dstree: \t" + timeElapsed);
 
             if (isCompleteByPerfect()      // Perfect result found
-            || (margin*=2) >= this.minSum       // Expanding would yield minimum values below ?0
-            || this.currentResult.range.getRange() > this.bestResult.range.getRange()){ // Prev itt was better
+            || (margin*=2) >= this.finalResult.range.getRange() // Expanding would yield in larger ranges than the already best result?
+            ){ // add Prev itt was better termination condition?
                 break;
             }
-        } while(this.currentResult.range.getRange() != this.finalResult.range.getRange());
+        } while(this.bestResult.range.getRange() != this.finalResult.range.getRange());
         this.callCount += totalCalls;
 
     }
