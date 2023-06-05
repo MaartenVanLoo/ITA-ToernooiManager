@@ -62,11 +62,13 @@ public class MQTTService {
     }
     public boolean publish(String topic, String message, int qos){
         if (!mqttPublisher.isConnected()) return false;
+        if (qos > 2 || qos < 0) return false; //TODO: throw error or not?
         try {
             MqttMessage mqttmessage = new MqttMessage(message.getBytes());
             mqttmessage.setQos(qos);
             mqttmessage.setRetained(false);
             this.mqttPublisher.publish(topic, mqttmessage);
+            log.info("Sent MQTT {topic:" + topic+",message:"+message + "}");
         } catch (MqttException me) {
             log.error("ERROR", me);
             return false;
