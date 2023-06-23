@@ -1,6 +1,7 @@
 package be.ita.toernooimanager;
 
 import be.ita.toernooimanager.model.local.acl.Privilege;
+import be.ita.toernooimanager.service.local.TournamentService;
 import be.ita.toernooimanager.service.local.acl.PrivilegeService;
 import be.ita.toernooimanager.service.local.acl.RoleService;
 import be.ita.toernooimanager.service.local.acl.UserService;
@@ -27,6 +28,8 @@ public class DataLoader {
     UserService userService;
     PouleSettingsService pouleSettingsService;
 
+    TournamentService tournamentService;
+
     @PostConstruct
     public void initData(){
         log.info("Data loader started...");
@@ -34,6 +37,9 @@ public class DataLoader {
         createRoles();
         createUsers();
         loadSettings();
+
+        //Create new tournament
+        createTournament();
         log.info("Data loader complete...");
     }
 
@@ -133,4 +139,8 @@ public class DataLoader {
         pouleSettingsService.save(url.getPath());
     }
 
+    private void createTournament(){
+        tournamentService.removeAll();
+        tournamentService.createTournament("Test Ippon Trophy");
+    }
 }
