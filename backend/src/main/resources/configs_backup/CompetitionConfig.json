@@ -1,48 +1,62 @@
-{
-  "comment": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf",
-  "U9":{
+[
+  {
+    "competitionName": "U9",
     "referenceYear": 2020,
     "years": [
       2012,2013,2014
-    ]
+    ],
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
   },
-  "U11":{
+  {
+    "competitionName": "U11",
     "referenceYear": 2020,
     "years": [
       2010,2011
-    ]
+    ],
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
   },
-  "U13": {
+  {
+    "competitionName": "U13",
     "referenceYear": 2020,
     "years": [
       2008,2009
-    ]
+    ],
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
   },
-  "U14": {
+  {
+    "competitionName": "U14",
     "referenceYear": 2020,
     "years": [
       2007,2008
-    ]
+    ],
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
   },
-  "U15": {
+  {
+    "competitionName": "U15",
     "referenceYear": 2020,
     "years": [
       2006,2007
-    ]
+    ],
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
   },
-  "U17": {
+  {
+    "competitionName": "U17",
     "referenceYear": 2020,
     "years": [
       2004,2005,2006
-    ]
+    ],
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
   },
-  "U18": {
+  {
+    "competitionName": "U18",
     "referenceYear": 2020,
     "years": [
       2003,2004,2005
-    ]
+    ],
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
   },
-  "U18+": {
+  {
+    "competitionName": "U18+",
     "referenceYear": 2020,
     "years": [
       1900,1901,1902,1903,1904,1905,1906,1907,1908,1909,
@@ -56,15 +70,19 @@
       1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,
       1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,
       2000,2001,2002,2003,2004,2005
-    ]
+    ],
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
   },
-  "U21": {
+  {
+    "competitionName": "U21",
     "referenceYear": 2020,
     "years": [
       2000,2001,2002
-    ]
+    ],
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
   },
-  "U21/U21+": {
+  {
+    "competitionName": "U21/U21+",
     "referenceYear": 2020,
     "years": [
       1900,1901,1902,1903,1904,1905,1906,1907,1908,1909,
@@ -78,6 +96,7 @@
       1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,
       1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,
       2000,2001,2002
-    ]
+    ],
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
   }
-}
+]

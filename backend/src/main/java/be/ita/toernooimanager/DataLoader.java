@@ -1,10 +1,12 @@
 package be.ita.toernooimanager;
 
+import be.ita.toernooimanager.model.local.Competition;
 import be.ita.toernooimanager.model.local.acl.Privilege;
 import be.ita.toernooimanager.service.local.TournamentService;
 import be.ita.toernooimanager.service.local.acl.PrivilegeService;
 import be.ita.toernooimanager.service.local.acl.RoleService;
 import be.ita.toernooimanager.service.local.acl.UserService;
+import be.ita.toernooimanager.service.local.config.CompetitionConfigService;
 import be.ita.toernooimanager.service.local.config.PouleSettingsService;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
@@ -22,11 +24,13 @@ import java.util.Set;
 @Lazy(false)
 public class DataLoader {
     private static final String pouleSettingsFile = "/PouleSettings.json";
+    private static final String competitionsConfigFile = "/configs/CompetitionConfig.json";
 
     PrivilegeService privilegeService;
     RoleService roleService;
     UserService userService;
     PouleSettingsService pouleSettingsService;
+    CompetitionConfigService competitionConfigService;
 
     TournamentService tournamentService;
 
@@ -128,6 +132,7 @@ public class DataLoader {
 
     private void loadSettings(){
         loadPouleSettings();
+        loadCompetitionConfigSettings();
     }
     private void loadPouleSettings(){
         URL url = this.getClass().getResource(DataLoader.pouleSettingsFile);
@@ -137,6 +142,15 @@ public class DataLoader {
         }
         pouleSettingsService.load(url.getPath());
         pouleSettingsService.save(url.getPath());
+    }
+    private void loadCompetitionConfigSettings(){
+        URL url = this.getClass().getResource(DataLoader.competitionsConfigFile);
+        if (url == null){
+            log.warn("Could not load Competitions Config");
+            return;
+        }
+        competitionConfigService.load(url.getPath());
+        competitionConfigService.save(url.getPath());
     }
 
     private void createTournament(){

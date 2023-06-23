@@ -1,6 +1,7 @@
 package be.ita.toernooimanager.model.local;
 
 import be.ita.toernooimanager.model.local.config.CompetitionConfig;
+import jakarta.annotation.PostConstruct;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +21,6 @@ import java.util.UUID;
 @Document
 public class Competition {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     //@Column(nullable = false)
