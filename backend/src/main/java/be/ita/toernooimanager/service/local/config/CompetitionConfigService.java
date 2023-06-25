@@ -1,16 +1,13 @@
 package be.ita.toernooimanager.service.local.config;
 
 import be.ita.toernooimanager.model.local.config.CompetitionConfig;
-import be.ita.toernooimanager.model.local.config.PouleSettings;
 import be.ita.toernooimanager.repositories.local.config.CompetitionConfigRepository;
-import be.ita.toernooimanager.repositories.local.config.PouleSettingsRepository;
+import be.ita.toernooimanager.service.Exceptions.ResourceNotFoundException;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +19,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-@Getter
-@Setter
 @Slf4j
 @AllArgsConstructor
 public class CompetitionConfigService {
@@ -68,5 +63,11 @@ public class CompetitionConfigService {
     private void clear(){
         log.info("Clear competition config settings");
         competitionConfigRepository.deleteAll();
+    }
+
+    //Getters & setters
+    public CompetitionConfig getCompetitionConfig(String config){
+        CompetitionConfig configuration = competitionConfigRepository.findByCompetitionName(config).orElseThrow(()->new ResourceNotFoundException(config));
+        return configuration;
     }
 }

@@ -9,26 +9,30 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Getter
 @Setter
-@Document
 public class Club {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private UUID id = UUID.randomUUID();
 
     @Column
     @NotNull
     @NotBlank
-    private String firstName;
+    private String clubName;
 
     @Column
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
-    private List<String> aliases; //Known aliases of club
+    private List<String> aliases = new ArrayList<>(); //Known aliases of club
+
+    public Club(String clubName) {
+        this.clubName = clubName;
+    }
 }

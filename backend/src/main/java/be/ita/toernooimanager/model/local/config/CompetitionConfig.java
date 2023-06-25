@@ -7,16 +7,20 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import java.util.List;
 import java.util.UUID;
 
-@Entity
 @Getter
 @Setter
 @Document
 public class CompetitionConfig {
+
     @Id
+    private UUID id = UUID.randomUUID();
+
     private String competitionName;
     private Integer referenceYear;
 

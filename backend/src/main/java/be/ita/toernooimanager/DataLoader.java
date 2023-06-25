@@ -1,7 +1,14 @@
 package be.ita.toernooimanager;
 
+import be.ita.toernooimanager.model.local.Club;
 import be.ita.toernooimanager.model.local.Competition;
+import be.ita.toernooimanager.model.local.Competitor;
+import be.ita.toernooimanager.model.local.Tournament;
 import be.ita.toernooimanager.model.local.acl.Privilege;
+import be.ita.toernooimanager.service.Exceptions.AlreadyExistsException;
+import be.ita.toernooimanager.service.local.ClubService;
+import be.ita.toernooimanager.service.local.CompetitionService;
+import be.ita.toernooimanager.service.local.CompetitorService;
 import be.ita.toernooimanager.service.local.TournamentService;
 import be.ita.toernooimanager.service.local.acl.PrivilegeService;
 import be.ita.toernooimanager.service.local.acl.RoleService;
@@ -15,7 +22,9 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -33,9 +42,12 @@ public class DataLoader {
     CompetitionConfigService competitionConfigService;
 
     TournamentService tournamentService;
+    CompetitionService competitionService;
+    ClubService clubService;
+    CompetitorService competitorService;
 
     @PostConstruct
-    public void initData(){
+    public void initData() throws AlreadyExistsException {
         log.info("Data loader started...");
         createPrivileges();
         createRoles();
@@ -43,7 +55,13 @@ public class DataLoader {
         loadSettings();
 
         //Create new tournament
-        createTournament();
+        Tournament tournament = createTournament();
+        List<Competition> competitions  = createCompetition(tournament);
+
+        //Create clubs
+        List<Club> clubs = createClubs();
+
+        List<Competitor> competitors = createCompetitors(clubs);
         log.info("Data loader complete...");
     }
 
@@ -141,7 +159,7 @@ public class DataLoader {
             return;
         }
         pouleSettingsService.load(url.getPath());
-        pouleSettingsService.save(url.getPath());
+        //pouleSettingsService.save(url.getPath());
     }
     private void loadCompetitionConfigSettings(){
         URL url = this.getClass().getResource(DataLoader.competitionsConfigFile);
@@ -150,11 +168,48 @@ public class DataLoader {
             return;
         }
         competitionConfigService.load(url.getPath());
-        competitionConfigService.save(url.getPath());
+        //competitionConfigService.save(url.getPath());
     }
 
-    private void createTournament(){
+    private Tournament createTournament(){
         tournamentService.removeAll();
-        tournamentService.createTournament("Test Ippon Trophy");
+        return tournamentService.createTournament("Test Ippon Trophy");
+    }
+    private List<Competition> createCompetition(Tournament tournament) throws AlreadyExistsException {
+        competitionService.removeAll();
+        List<Competition> competitions = new ArrayList<>();
+        competitions.add(competitionService.createCompetition(tournament.getId(),"U11"));
+        competitions.add(competitionService.createCompetition(tournament.getId(),"U13"));
+        competitions.add(competitionService.createCompetition(tournament.getId(),"U15"));
+        competitions.add(competitionService.createCompetition(tournament.getId(),"U18"));
+        competitions.add(competitionService.createCompetition(tournament.getId(),"U21/U21+"));
+        return competitions;
+    }
+
+    private List<Club> createClubs() throws AlreadyExistsException {
+        clubService.removeAll();
+        List<Club> clubs = new ArrayList<>();
+        Club club;
+
+        club = clubService.createClub("Merksem Judo Club");
+        club = clubService.addAlias(club.getClubName(), "MJC");
+        clubs.add(club);
+
+        club = clubService.createClub("Top Judo Antwerpen");
+        club = clubService.addAlias(club.getClubName(), "TJA");
+        clubs.add(club);
+
+        clubs.add(clubService.createClub("Satori kwai Mortsel"));
+        clubs.add(clubService.createClub("Bujin Wilrijk"));
+        return clubs;
+    }
+
+    private List<Competitor> createCompetitors(List<Club> clubs){
+        competitorService.removeAll();
+        List<Competitor> competitors = new ArrayList<>();
+
+        competitors.add(competitorService.createCompetitor("Maarten","Van Loo","1998",1,"MJC","Belgium"));
+
+        return competitors;
     }
 }

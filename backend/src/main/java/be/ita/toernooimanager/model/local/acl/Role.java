@@ -15,6 +15,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@Table(name= "ACL_ROLE")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Role {

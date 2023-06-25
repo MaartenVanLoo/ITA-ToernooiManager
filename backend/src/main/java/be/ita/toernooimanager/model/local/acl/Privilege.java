@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Entity
+@Table(name= "ACL_PRIVILEGE")
 @Getter
 @Setter
 @NoArgsConstructor

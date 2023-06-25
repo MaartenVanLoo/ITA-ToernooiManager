@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@Table(name= "ACL_USER")
 @Getter
 @Setter
 @NoArgsConstructor

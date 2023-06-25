@@ -12,7 +12,6 @@ import org.springframework.validation.annotation.Validated;
 
 import java.util.UUID;
 
-@Entity
 @Getter
 @Setter
 @Document

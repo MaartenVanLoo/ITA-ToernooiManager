@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.bouncycastle.asn1.eac.UnsignedInteger;
 
@@ -32,9 +33,11 @@ public class Competitor {
     private String lastName;
 
     @Column(name = "birtYear")
-    private String birtYear;
+    @NotNull
+    private String birthYear;
 
     @Column(name = "belt")
+    @NotNull
     private Integer belt; //kyu: <0; dan >0
 
     @Column
@@ -46,9 +49,19 @@ public class Competitor {
 
     @Column(name = "country")
     private String country;
+
     @Column(name = "deleted")
-    private Integer deleted; //TODO: Soft delete?
+    private Boolean deleted = false; //TODO: Soft delete?
 
     @Column(name = "comment")
     private String comment;
+
+    public Competitor(String firstName, String lastName, String birthYear, Integer belt, Club club, String country) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthYear = birthYear;
+        this.belt = belt;
+        this.club = club;
+        this.country = country;
+    }
 }

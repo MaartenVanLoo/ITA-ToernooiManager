@@ -88,12 +88,12 @@ public class MQTTServiceTest {
 
         receiver.subscribe(testTopic);
 
-        this.mqttService.publish(testTopic,testMessage,2); //Use QOS exactly once to make sure we excpect the message
+        this.mqttService.publish(testTopic,testMessage,2); //Use QOS exactly once to make sure we expect the message
         for (int i =0; i < 11; i++){
             if (this.receivedMessage){
                 break;
             }
-            wait(100); //wait 100 ms
+            Thread.sleep(100); //wait 100 ms
             if (i == 10){
                 fail("No answer received within 1 second");
             }
