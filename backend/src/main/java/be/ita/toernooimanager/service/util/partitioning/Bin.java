@@ -10,11 +10,16 @@ import lombok.Setter;
 class Bin {
     int index;
     int currentSize;
+    int offset = 0;
 
     public Bin(int index) {
         this.index = index;
     }
-
+    public Bin(int index, int offset){
+        this.index = 0;
+        this.offset = offset;
+        this.currentSize = offset;
+    }
     public void addNumber(IdNumber number){
         this.currentSize += number.value;
         number.setBinId(this.index);
@@ -26,7 +31,7 @@ class Bin {
     }
 
     public void reset(){
-        this.currentSize = 0;
+        this.currentSize = this.offset;
     }
 }
 
