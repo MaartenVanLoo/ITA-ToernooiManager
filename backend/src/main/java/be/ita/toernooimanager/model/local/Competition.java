@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.Year;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 /**
@@ -38,10 +39,7 @@ public class Competition {
         Competition competition = new Competition();
         //TODO: load from config
         int currentYear = Year.now().getValue();
-        competition.birthYears = config.getYears();
-        for (Integer year : competition.birthYears){
-            year += currentYear - config.getReferenceYear();
-        }
+        competition.birthYears = config.getYears().stream().map((year) -> year + currentYear - config.getReferenceYear()).collect(Collectors.toList());
         competition.tournamentId = tournament.getId();
         competition.name = competitionName;
         return competition;
