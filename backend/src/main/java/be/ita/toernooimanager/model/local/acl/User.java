@@ -33,7 +33,7 @@ public class User {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "USER_ROLE",
+            name = "ACL_USER_ROLE",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)}
     )

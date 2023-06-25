@@ -32,6 +32,7 @@ public class Competition {
     private UUID tournamentId = null;
 
     private boolean isRunning = false;
+    private boolean isWeighing = false;
 
     public static Competition fromConfig(Tournament tournament, CompetitionConfig config, String competitionName){
         Competition competition = new Competition();

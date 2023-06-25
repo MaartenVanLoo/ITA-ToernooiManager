@@ -31,7 +31,7 @@ public class Role {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "ROLE_PRIV",
+            name = "ACL_ROLE_PRIV",
             joinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "id", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "PRIV_ID", referencedColumnName = "id", nullable = false)})
     private Set<Privilege> privileges;
