@@ -3,6 +3,7 @@ package be.ita.toernooimanager.service;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +46,7 @@ public class MQTTService {
     public void postConstruct(){
         this.address = "tcp://" + this.remote + ":" + this.port;
         try {
-            this.mqttPublisher = new MqttClient(this.address, publisherId);
+            this.mqttPublisher = new MqttClient(this.address, publisherId,new MqttDefaultFilePersistence("/mqtt-tmp"));
             MqttConnectOptions options = new MqttConnectOptions();
             options.setAutomaticReconnect(this.autoReconnect);
             options.setCleanSession(this.cleanSession);
