@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface CompetitionRepository extends MongoRepository<Competition, UUID> {
+public interface CompetitionRepository extends JpaRepository<Competition, UUID> {
     Optional<Competition> findByName(String name);
 
 }

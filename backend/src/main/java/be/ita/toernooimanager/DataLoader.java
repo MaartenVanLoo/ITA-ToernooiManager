@@ -1,15 +1,9 @@
 package be.ita.toernooimanager;
 
-import be.ita.toernooimanager.model.local.Club;
-import be.ita.toernooimanager.model.local.Competition;
-import be.ita.toernooimanager.model.local.Competitor;
-import be.ita.toernooimanager.model.local.Tournament;
+import be.ita.toernooimanager.model.local.*;
 import be.ita.toernooimanager.model.local.acl.Privilege;
 import be.ita.toernooimanager.service.Exceptions.AlreadyExistsException;
-import be.ita.toernooimanager.service.local.ClubService;
-import be.ita.toernooimanager.service.local.CompetitionService;
-import be.ita.toernooimanager.service.local.CompetitorService;
-import be.ita.toernooimanager.service.local.TournamentService;
+import be.ita.toernooimanager.service.local.*;
 import be.ita.toernooimanager.service.local.acl.PrivilegeService;
 import be.ita.toernooimanager.service.local.acl.RoleService;
 import be.ita.toernooimanager.service.local.acl.UserService;
@@ -19,6 +13,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.net.URL;
@@ -31,6 +26,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Slf4j
 @Lazy(false)
+@Profile("!prod")
 public class DataLoader {
     private static final String pouleSettingsFile = "/PouleSettings.json";
     private static final String competitionsConfigFile = "/configs/CompetitionConfig.json";
@@ -43,6 +39,7 @@ public class DataLoader {
 
     TournamentService tournamentService;
     CompetitionService competitionService;
+    TatamiService tatamiService;
     ClubService clubService;
     CompetitorService competitorService;
 
@@ -57,6 +54,7 @@ public class DataLoader {
         //Create new tournament
         Tournament tournament = createTournament();
         List<Competition> competitions  = createCompetition(tournament);
+        List<Tatami> tatamis = createTatamis();
 
         //Create clubs
         List<Club> clubs = createClubs();
@@ -184,6 +182,19 @@ public class DataLoader {
         competitions.add(competitionService.createCompetition(tournament.getId(),"U18"));
         competitions.add(competitionService.createCompetition(tournament.getId(),"U21/U21+"));
         return competitions;
+    }
+    private List<Tatami> createTatamis() throws AlreadyExistsException {
+        tatamiService.removeAll();
+        List<Tatami> tatamis = new ArrayList<>();
+        tatamis.add(tatamiService.createTatami(1));
+        tatamis.add(tatamiService.createTatami(2));
+        tatamis.add(tatamiService.createTatami(3));
+        tatamis.add(tatamiService.createTatami(4));
+        tatamis.add(tatamiService.createTatami(5));
+        tatamis.add(tatamiService.createTatami(6));
+        tatamis.add(tatamiService.createTatami(7));
+        tatamis.add(tatamiService.createTatami(8));
+        return tatamis;
     }
 
     private List<Club> createClubs() throws AlreadyExistsException {

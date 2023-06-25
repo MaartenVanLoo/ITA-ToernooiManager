@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-@Document
+@Entity
 public class Competition {
     @Id
     private UUID id = UUID.randomUUID();
@@ -32,8 +32,13 @@ public class Competition {
 
     private UUID tournamentId = null;
 
-    private boolean isRunning = false;
-    private boolean isWeighing = false;
+    private boolean isRunning = false;  // Competition is running (or started) (can be used as "guard" before accessing information)
+    private boolean isWeighing = false; // Weighing can be started separate from the actual competition (pre-weighing). Can be used to control the data accessed by the weight computer.
+
+
+    //Allocation of tatamis
+    @ManyToMany(fetch = FetchType.LAZY)
+    List<Tatami> tatamis;
 
     public static Competition fromConfig(Tournament tournament, CompetitionConfig config, String competitionName){
         Competition competition = new Competition();
