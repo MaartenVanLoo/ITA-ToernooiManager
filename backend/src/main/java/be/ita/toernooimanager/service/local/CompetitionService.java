@@ -6,6 +6,7 @@ import be.ita.toernooimanager.model.local.config.CompetitionConfig;
 import be.ita.toernooimanager.repositories.local.CompetitionRepository;
 import be.ita.toernooimanager.repositories.local.TournamentRepository;
 import be.ita.toernooimanager.service.Exceptions.AlreadyExistsException;
+import be.ita.toernooimanager.service.Exceptions.ResourceNotFoundException;
 import be.ita.toernooimanager.service.local.config.CompetitionConfigService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,7 @@ public class CompetitionService {
 
     CompetitionRepository competitionRepository;
 
+    //region Create
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public Competition createCompetition(UUID tournamentId, String config) throws AlreadyExistsException {
         return createCompetition(tournamentId,config,null);
@@ -47,10 +49,21 @@ public class CompetitionService {
         log.info("New competition: " + competition.getName() + "[" + competition.getId()+ "]");
         return competition;
     }
+    //endregion
 
+    //region Get
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public Competition getCompetition(UUID id){
+        Competition competition = competitionRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(id.toString()));
+        return competition;
+    }
+    //endregion
+
+    //region Delete
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void removeAll(){
         log.info("Delete all competitions");
         competitionRepository.deleteAll();
     }
+    //endregion
 }

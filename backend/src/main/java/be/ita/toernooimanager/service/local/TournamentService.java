@@ -20,6 +20,9 @@ import java.util.UUID;
 @Validated
 public class TournamentService {
     TournamentRepository tournamentRepository;
+
+
+    //region Create
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public Tournament createTournament(String name) {
         Tournament tournament = new Tournament(name);
@@ -27,16 +30,21 @@ public class TournamentService {
         log.info("New tournament: " + tournament.getName() + "[" + tournament.getId()+ "]");
         return tournament;
     }
+    //endregion
 
+    //region Get
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public Tournament getTournament(UUID id){
         Tournament tournament = tournamentRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(id.toString()));
         return tournament;
     }
+    //endregion
 
+    //region Delete
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void removeAll(){
         log.info("Delete all tournaments");
         tournamentRepository.deleteAll();
     }
+    //endregion
 }

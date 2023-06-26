@@ -1,7 +1,8 @@
-package be.ita.toernooimanager.controller;
+package be.ita.toernooimanager.controller.shiai;
 
-import be.ita.toernooimanager.model.shiai.InfoEntity;
-import be.ita.toernooimanager.service.shiai.InfoService;
+import be.ita.toernooimanager.model.shiai.CatdefEntity;
+import be.ita.toernooimanager.service.shiai.CatdefService;
+import be.ita.toernooimanager.service.shiai.mapper.CatdefMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,17 +18,17 @@ import java.util.List;
 @Slf4j
 @CrossOrigin
 @RestController
-@RequestMapping("/info")
+@RequestMapping("/catdef")
 @RequiredArgsConstructor
-public class InfoController {
-    private final InfoService infoService;
-
+public class CatdefController {
+    private final CatdefService catdefService;
+    private final CatdefMapper catdefMapper;
     @GetMapping
     @Transactional
     @PreAuthorize("hasAuthority('logon')")
-    public ResponseEntity<?> getInfo(){
-        log.info("GET: /info");
-        List<InfoEntity> entity= infoService.findAll();
-        return ResponseEntity.ok().body(entity);
+    public ResponseEntity<?> getCatdef(){
+        log.info("GET: /catdef");
+        List<CatdefEntity> entity= catdefService.findAll();
+        return ResponseEntity.ok().body(entity.stream().map(catdefMapper::mapEntity2GetDto).toList());
     }
 }

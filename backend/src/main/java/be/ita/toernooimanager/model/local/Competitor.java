@@ -4,6 +4,7 @@ package be.ita.toernooimanager.model.local;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,13 @@ public class Competitor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+    @Column(name = "weightId")
+    @PositiveOrZero
+    private Integer weightId = 0;
+
+    //@ManyToOne
+    //private Competition competition;
 
     @Column(name = "firstName")
     @NotNull

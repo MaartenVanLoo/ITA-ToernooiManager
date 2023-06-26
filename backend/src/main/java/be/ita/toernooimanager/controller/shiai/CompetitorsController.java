@@ -1,7 +1,7 @@
-package be.ita.toernooimanager.controller;
+package be.ita.toernooimanager.controller.shiai;
 
-import be.ita.toernooimanager.model.shiai.MatchesEntity;
-import be.ita.toernooimanager.service.shiai.MatchesService;
+import be.ita.toernooimanager.model.shiai.CompetitorsEntity;
+import be.ita.toernooimanager.service.shiai.CompetitorsService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,17 +17,17 @@ import java.util.List;
 @Slf4j
 @CrossOrigin
 @RestController
-@RequestMapping("/matches")
+@RequestMapping("/competitors")
 @RequiredArgsConstructor
-public class MatchesController {
-    private final MatchesService matchesService;
+public class CompetitorsController {
+    private final CompetitorsService competitorsService;
 
     @GetMapping
     @Transactional
     @PreAuthorize("hasAuthority('logon')")
-    public ResponseEntity<?> getMatches(){
-        log.info("GET: /matches");
-        List<MatchesEntity> entity= matchesService.findAll();
+    public ResponseEntity<?> getCompetitors(){
+        log.info("GET: /competitors");
+        List<CompetitorsEntity> entity= competitorsService.findAll();
         return ResponseEntity.ok().body(entity);
     }
 }

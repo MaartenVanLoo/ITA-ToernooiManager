@@ -1,8 +1,7 @@
-package be.ita.toernooimanager.controller;
+package be.ita.toernooimanager.controller.shiai;
 
-import be.ita.toernooimanager.model.shiai.CatdefEntity;
-import be.ita.toernooimanager.service.shiai.CatdefService;
-import be.ita.toernooimanager.service.shiai.mapper.CatdefMapper;
+import be.ita.toernooimanager.model.shiai.CategoriesEntity;
+import be.ita.toernooimanager.repositories.shiai.CategoriesRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,17 +17,17 @@ import java.util.List;
 @Slf4j
 @CrossOrigin
 @RestController
-@RequestMapping("/catdef")
+@RequestMapping("/categories")
 @RequiredArgsConstructor
-public class CatdefController {
-    private final CatdefService catdefService;
-    private final CatdefMapper catdefMapper;
+public class CategoriesController {
+    private final CategoriesRepository categoriesRepository;
+
     @GetMapping
     @Transactional
     @PreAuthorize("hasAuthority('logon')")
-    public ResponseEntity<?> getCatdef(){
-        log.info("GET: /catdef");
-        List<CatdefEntity> entity= catdefService.findAll();
-        return ResponseEntity.ok().body(entity.stream().map(catdefMapper::mapEntity2GetDto).toList());
+    public ResponseEntity<?> getCategories(){
+        log.info("GET: /categories");
+        List<CategoriesEntity> entity= categoriesRepository.findAll();
+        return ResponseEntity.ok().body(entity);
     }
 }
