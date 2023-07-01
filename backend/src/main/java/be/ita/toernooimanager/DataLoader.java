@@ -41,6 +41,7 @@ public class DataLoader {
     CompetitionService competitionService;
     TatamiService tatamiService;
     ClubService clubService;
+    CountryService countryService;
     CompetitorService competitorService;
 
     @PostConstruct
@@ -58,6 +59,7 @@ public class DataLoader {
 
         //Create clubs
         List<Club> clubs = createClubs();
+        List<Country> counties = createCountries();
 
         List<Competitor> competitors = createCompetitors(clubs);
         log.info("Data loader complete...");
@@ -214,6 +216,28 @@ public class DataLoader {
         clubs.add(clubService.createClub("Bujin Wilrijk"));
         return clubs;
     }
+    private List<Country> createCountries() throws AlreadyExistsException {
+        countryService.removeAll();
+        List<Country> countries = new ArrayList<>();
+        Country country;
+
+        country = countryService.createCountry("Belgium");
+        country = countryService.addAlias(country.getCountryName(), "BE");
+        countries.add(country);
+
+        country = countryService.createCountry("Netherlands");
+        country = countryService.addAlias(country.getCountryName(), "NL");
+        countries.add(country);
+
+        country = countryService.createCountry("Sweden");
+        country = countryService.addAlias(country.getCountryName(), "SE");
+        countries.add(country);
+
+        countries.add(countryService.createCountry("Luxembourg"));
+        countries.add(countryService.createCountry("France"));
+        return countries;
+    }
+
 
     private List<Competitor> createCompetitors(List<Club> clubs){
         competitorService.removeAll();

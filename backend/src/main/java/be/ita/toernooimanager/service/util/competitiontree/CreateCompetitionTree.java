@@ -9,12 +9,12 @@ import java.util.UUID;
 
 public class CreateCompetitionTree {
     /**
-     * Key of tree contains a concatenation of round and match ID separated by a semicolon;
+     * Key of tree contains a concatenation of round and match ID separated by a colon;
      * Example:
-     * "0;0" is the location of the first place
-     * "1;0" is the first competitor of the final
-     * "1;1" is the second competitor of the final
-     * "4;15" is the last field of the last 16 competitors in the tree
+     * "0:0" is the location of the first place
+     * "1:0" is the first competitor of the final
+     * "1:1" is the second competitor of the final
+     * "4:15" is the last field of the last 16 competitors in the tree
      * @param competitors list of all competitors in the tree
      * @return
      */
@@ -40,8 +40,7 @@ public class CreateCompetitionTree {
 
         @Override
         public String toString() {
-            return round +
-                    ";" + position;
+            return round + ":" + position;
         }
 
         @Override
@@ -70,7 +69,7 @@ public class CreateCompetitionTree {
 
         Tuple nodeId;
 
-        boolean lastInsert = false;
+        boolean lastInsert = true;
 
         public Node() {
             this.nodeId = new Tuple(0,0);

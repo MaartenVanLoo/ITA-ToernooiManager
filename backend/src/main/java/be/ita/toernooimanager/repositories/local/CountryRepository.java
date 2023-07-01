@@ -7,5 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface CountryRepository extends JpaRepository<Country, UUID> {
+    Optional<Country> findByCountryName(String countryName);
+    Optional<Country> findByAliasesContainingIgnoreCase(String alias);
     Optional<Country> findByCountryNameOrAliasesContainingIgnoreCase(String countryName, String alias);
 }

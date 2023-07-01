@@ -112,9 +112,9 @@ public class CreateCompetitionPoolUnitTest {
         HashMap<String, UUID> pools = CreateCompetitionPool.createCompetitionPool(competitors,3);
 
         //validate output
-        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("A;")).count());
-        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("B;")).count());
-        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("C;")).count());
+        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("A:")).count());
+        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("B:")).count());
+        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("C:")).count());
     }
     @Test
     public void createCompetitionPoolAllDifferentClubsTest() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
@@ -150,14 +150,14 @@ public class CreateCompetitionPoolUnitTest {
         HashMap<String, UUID> pools = CreateCompetitionPool.createCompetitionPool(competitors,3);
 
         //validate output
-        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("A;")).count());
-        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("B;")).count());
-        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("C;")).count());
+        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("A:")).count());
+        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("B:")).count());
+        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("C:")).count());
 
         List<Competitor> pool;
-        List<String> poolA = pools.keySet().stream().filter((s)-> s.startsWith("A;")).toList();
-        List<String> poolB = pools.keySet().stream().filter((s)-> s.startsWith("B;")).toList();
-        List<String> poolC = pools.keySet().stream().filter((s)-> s.startsWith("C;")).toList();
+        List<String> poolA = pools.keySet().stream().filter((s)-> s.startsWith("A:")).sorted().toList();
+        List<String> poolB = pools.keySet().stream().filter((s)-> s.startsWith("B:")).sorted().toList();
+        List<String> poolC = pools.keySet().stream().filter((s)-> s.startsWith("C:")).sorted().toList();
 
         //validate pool A:
         pool = poolA.stream().map(pools::get).map((uuid) -> competitors.stream().filter((c) -> c.getId() == uuid).findFirst().get()).toList();
@@ -211,14 +211,14 @@ public class CreateCompetitionPoolUnitTest {
         HashMap<String, UUID> pools = CreateCompetitionPool.createCompetitionPool(competitors,3);
 
         //validate output
-        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("A;")).count());
-        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("B;")).count());
-        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("C;")).count());
+        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("A:")).count());
+        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("B:")).count());
+        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("C:")).count());
 
         List<Competitor> pool;
-        List<String> poolA = pools.keySet().stream().filter((s)-> s.startsWith("A;")).toList();
-        List<String> poolB = pools.keySet().stream().filter((s)-> s.startsWith("B;")).toList();
-        List<String> poolC = pools.keySet().stream().filter((s)-> s.startsWith("C;")).toList();
+        List<String> poolA = pools.keySet().stream().filter((s)-> s.startsWith("A:")).sorted().toList();
+        List<String> poolB = pools.keySet().stream().filter((s)-> s.startsWith("B:")).sorted().toList();
+        List<String> poolC = pools.keySet().stream().filter((s)-> s.startsWith("C:")).sorted().toList();
 
         //validate pool A:
         pool = poolA.stream().map(pools::get).map((uuid) -> competitors.stream().filter((c) -> c.getId() == uuid).findFirst().get()).toList();
@@ -274,14 +274,14 @@ public class CreateCompetitionPoolUnitTest {
         HashMap<String, UUID> pools = CreateCompetitionPool.createCompetitionPool(competitors,3);
 
         //validate output
-        assertEquals(4,pools.keySet().stream().filter((s)-> s.startsWith("A;")).count());
-        assertEquals(4,pools.keySet().stream().filter((s)-> s.startsWith("B;")).count());
-        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("C;")).count());
+        assertEquals(4,pools.keySet().stream().filter((s)-> s.startsWith("A:")).count());
+        assertEquals(4,pools.keySet().stream().filter((s)-> s.startsWith("B:")).count());
+        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("C:")).count());
 
         List<Competitor> pool;
-        List<String> poolA = pools.keySet().stream().filter((s)-> s.startsWith("A;")).toList();
-        List<String> poolB = pools.keySet().stream().filter((s)-> s.startsWith("B;")).toList();
-        List<String> poolC = pools.keySet().stream().filter((s)-> s.startsWith("C;")).toList();
+        List<String> poolA = pools.keySet().stream().filter((s)-> s.startsWith("A:")).sorted().toList();
+        List<String> poolB = pools.keySet().stream().filter((s)-> s.startsWith("B:")).sorted().toList();
+        List<String> poolC = pools.keySet().stream().filter((s)-> s.startsWith("C:")).sorted().toList();
 
         //validate pool A:
         pool = poolA.stream().map(pools::get).map((uuid) -> competitors.stream().filter((c) -> c.getId() == uuid).findFirst().get()).toList();
@@ -342,14 +342,14 @@ public class CreateCompetitionPoolUnitTest {
         HashMap<String, UUID> pools = CreateCompetitionPool.createCompetitionPool(competitors,3);
 
         //validate output
-        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("A;")).count());
-        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("B;")).count());
-        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("C;")).count());
+        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("A:")).count());
+        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("B:")).count());
+        assertEquals(3,pools.keySet().stream().filter((s)-> s.startsWith("C:")).count());
 
         List<Competitor> pool;
-        List<String> poolA = pools.keySet().stream().filter((s)-> s.startsWith("A;")).toList();
-        List<String> poolB = pools.keySet().stream().filter((s)-> s.startsWith("B;")).toList();
-        List<String> poolC = pools.keySet().stream().filter((s)-> s.startsWith("C;")).toList();
+        List<String> poolA = pools.keySet().stream().filter((s)-> s.startsWith("A:")).sorted().toList();
+        List<String> poolB = pools.keySet().stream().filter((s)-> s.startsWith("B:")).sorted().toList();
+        List<String> poolC = pools.keySet().stream().filter((s)-> s.startsWith("C:")).sorted().toList();
 
         boolean foundDuplicatePool = false;
         //validate pool A:
@@ -412,14 +412,14 @@ public class CreateCompetitionPoolUnitTest {
         HashMap<String, UUID> pools = CreateCompetitionPool.createCompetitionPool(competitors,3);
 
         //validate output
-        assertEquals(4,pools.keySet().stream().filter((s)-> s.startsWith("A;")).count());
-        assertEquals(4,pools.keySet().stream().filter((s)-> s.startsWith("B;")).count());
-        assertEquals(4,pools.keySet().stream().filter((s)-> s.startsWith("C;")).count());
+        assertEquals(4,pools.keySet().stream().filter((s)-> s.startsWith("A:")).count());
+        assertEquals(4,pools.keySet().stream().filter((s)-> s.startsWith("B:")).count());
+        assertEquals(4,pools.keySet().stream().filter((s)-> s.startsWith("C:")).count());
 
         List<Competitor> pool;
-        List<String> poolA = pools.keySet().stream().filter((s)-> s.startsWith("A;")).toList();
-        List<String> poolB = pools.keySet().stream().filter((s)-> s.startsWith("B;")).toList();
-        List<String> poolC = pools.keySet().stream().filter((s)-> s.startsWith("C;")).toList();
+        List<String> poolA = pools.keySet().stream().filter((s)-> s.startsWith("A:")).sorted().toList();
+        List<String> poolB = pools.keySet().stream().filter((s)-> s.startsWith("B:")).sorted().toList();
+        List<String> poolC = pools.keySet().stream().filter((s)-> s.startsWith("C:")).sorted().toList();
 
         //validate pool A:
         pool = poolA.stream().map(pools::get).map((uuid) -> competitors.stream().filter((c) -> c.getId() == uuid).findFirst().get()).toList();

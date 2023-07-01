@@ -8,12 +8,12 @@ import java.lang.reflect.*;
 
 public class CreateCompetitionPool {
     /**
-     * Key of tree contains a concatenation of pool name and position in pool separated by a semicolon;<br>
+     * Key of tree contains a concatenation of pool name and position in pool separated by a colon;<br>
      * Example:<br>
-     * "A;0" for Pool A, position 0<br>
-     * "D;4" for Pool D, position 4<br>
-     * "E;1" for Pool A, position 1<br>
-     * "C;5"for Pool A, position 5 (Note: according to regulations a pool of size > 5 is not possible, hence this would be illegal, however the datastructure does allow this)
+     * "A:0" for Pool A, position 0<br>
+     * "D:4" for Pool D, position 4<br>
+     * "E:1" for Pool A, position 1<br>
+     * "C:5"for Pool A, position 5 (Note: according to regulations a pool of size > 5 is not possible, hence this would be illegal, however the datastructure does allow this)
      * @param competitors list of all competitors in the Pool
      * @return
      */
@@ -43,7 +43,7 @@ public class CreateCompetitionPool {
         HashMap<String, UUID> map =  new HashMap<>(competitors.size());
         for (Pool pool: pools){
             for (int i = 0; i < pool.competitors.size(); i++) {
-                map.put(pool.name + ";" + i, pool.competitors.get(i).getId());
+                map.put(pool.name + ":" + i, pool.competitors.get(i).getId());
             }
         }
         return map;
