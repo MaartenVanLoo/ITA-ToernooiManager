@@ -23,7 +23,7 @@
                 prepend-icon="mdi-account" name="Username" label="Username"
                 v-model="otherUser"
                 id="username"
-                :error-messages="fieldErrors.get('UserName')"
+                :error-messages="fieldErrors.get('UserName')!"
                 @update:modelValue=""
                 @keydown.enter="login()"
             ></v-text-field>
@@ -35,7 +35,7 @@
                 label="Password"
                 :type="showPassword ? 'text' : 'password'"
                 v-model="password"
-                :error-messages="fieldErrors.get('password')"
+                :error-messages="fieldErrors.get('password')!"
                 @click:append="showPassword = !showPassword"
                 @keydown.enter="login()"
             ></v-text-field>
@@ -112,8 +112,8 @@ function login(){
        const id = username.replace("Tatami","");
       await router.push('/tatami/'+id);
     }
-    else if (username.includes("Weeg")) await router.push('/weeg')
-    else if (username.includes("Info")) await router.push('/Info')
+    else if (username.includes("Weeg")) await router.push('/weight')
+    else if (username.includes("Info")) await router.push('/info')
     else await router.push('/home')
   }).catch(() => {
     console.log('login error')

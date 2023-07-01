@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,6 +25,7 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public User createUser(User user) throws AlreadyExistsException {
         if (userRepository.existsByName(user.getName())) {
             throw new AlreadyExistsException(String.format("User %s already exists",user.getName()));
@@ -36,10 +39,12 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public User createUser(String name, String description, Set<Role> userRoles) throws AlreadyExistsException {
         User user = new User(name, description, userRoles);
         return this.createUser(user); //correct role mapping will happen here
     }
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public User createUser(String name, String description, Role userRole) throws AlreadyExistsException {
         Set<Role> roles = new HashSet<>();
         roles.add(userRole);
@@ -47,6 +52,7 @@ public class UserService {
         return this.createUser(user); //correct role mapping will happen here
     }
 
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public User getUserByName(String name) {
         return userRepository.findByName(name)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("User %s doesn't exist", name)));

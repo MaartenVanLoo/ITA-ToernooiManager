@@ -2,11 +2,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import {useAuthStore} from "@/stores/AuthStore";
 import Default from "@/layouts/Default.vue";
+import WeightLayout from "@/layouts/WeightLayout.vue";
 const Home = () =>import('@/views/Home.vue')
 const Login = () =>import('@/views/Auth/Login.vue')
 const CompetitionClock = ()=> import("@/views/Tatami/CompetitionClock.vue");
 const Info = ()=> import("@/views/Info/Info.vue")
-const Weeg = ()=>import("@/views/Weeg/Weeg.vue")
+const Weight = ()=>import("@/views/Weight/Weight.vue")
 const routes = [
   {
     path: '/',
@@ -41,9 +42,16 @@ const routes = [
     component: Info
   },
   {
-    path:'/Weeg/',
-    name: "Weeg",
-    component: Weeg
+    path:'/weight/',
+    name: "Weight",
+    component: WeightLayout,
+    children: [
+      {
+        //Note: this path is actually unreachable due to redirect /home
+        path: '',
+        component: Weight,
+      }
+      ]
   }
   //Default page when all other paths don't match. This must remain the final element in this list.
   //{

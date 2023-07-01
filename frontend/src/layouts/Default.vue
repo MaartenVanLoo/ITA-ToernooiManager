@@ -56,40 +56,14 @@
 </template>
 
 <script lang="ts" setup>
-const workflowSteps= [
-  {
-    id: 1,
-    name: 'Step 1',
-    completed: true,
-  },
-  {
-    id: 2,
-    name: 'Step 2',
-    completed: true,
-  },
-  {
-    id: 3,
-    name: 'Step 3',
-    completed: false,
-  },
-  {
-    id: 4,
-    name: 'Step 4',
-    completed: false,
-  },
-]
 
 import {useTheme} from 'vuetify'
-import {ref} from "vue";
 import {useAuthStore} from "@/stores/AuthStore";
 import {useThemeStore} from "@/stores/ThemeStore";
 import config from "../../config";
-import Workflow from "@/components/WorkflowProgress.vue";
-
 const theme = useTheme()
 const themeStore = useThemeStore()
 const authStore = useAuthStore()
-const drawer = ref(true)
 const navigation_links = config["NAVIGATION"]
 
 function checkRoles(roles: string[] |undefined): boolean {
