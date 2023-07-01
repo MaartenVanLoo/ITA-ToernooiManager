@@ -219,7 +219,7 @@ public class DataLoader {
         competitorService.removeAll();
         List<Competitor> competitors = new ArrayList<>();
 
-        competitors.add(competitorService.createCompetitor("Maarten","Van Loo","1998",1,"MJC","Belgium"));
+        competitors.add(competitorService.createCompetitor("Maarten","Van Loo",1998,1,"MJC","Belgium"));
 
         return competitors;
     }

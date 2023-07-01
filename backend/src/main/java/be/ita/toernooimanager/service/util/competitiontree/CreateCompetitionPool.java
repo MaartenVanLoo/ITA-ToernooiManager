@@ -4,6 +4,7 @@ import be.ita.toernooimanager.model.local.Club;
 import be.ita.toernooimanager.model.local.Competitor;
 
 import java.util.*;
+import java.lang.reflect.*;
 
 public class CreateCompetitionPool {
     /**
@@ -13,7 +14,7 @@ public class CreateCompetitionPool {
      * "D;4" for Pool D, position 4<br>
      * "E;1" for Pool A, position 1<br>
      * "C;5"for Pool A, position 5 (Note: according to regulations a pool of size > 5 is not possible, hence this would be illegal, however the datastructure does allow this)
-     * @param competitors list of all competitors in the tree
+     * @param competitors list of all competitors in the Pool
      * @return
      */
     public static HashMap<String, UUID> createCompetitionPool(List<Competitor> competitors, int poolCount){
@@ -58,11 +59,12 @@ public class CreateCompetitionPool {
      * @return
      */
     private static String nameFromInt(int number){
+        if (number < 0) return "";
         if (number < 26){
             return Character.toString((char) (number+0x41));
         }
         else{
-            return nameFromInt(number/26) + (char) (number % 21 + 0x41);
+            return nameFromInt(number/26-1) + (char) (number % 26 + 0x41);
         }
     }
     private static class Pool{

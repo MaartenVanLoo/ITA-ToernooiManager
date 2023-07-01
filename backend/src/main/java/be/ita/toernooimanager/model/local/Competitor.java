@@ -40,7 +40,7 @@ public class Competitor {
 
     @Column(name = "birtYear")
     @NotNull
-    private String birthYear;
+    private Integer birthYear;
 
     @Column(name = "belt")
     @NotNull
@@ -62,7 +62,7 @@ public class Competitor {
     @Column(name = "comment")
     private String comment;
 
-    public Competitor(String firstName, String lastName, String birthYear, Integer belt, Club club, Country country) {
+    public Competitor(String firstName, String lastName, Integer birthYear, Integer belt, Club club, Country country) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthYear = birthYear;
