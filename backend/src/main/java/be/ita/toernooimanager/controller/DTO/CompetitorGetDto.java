@@ -1,7 +1,6 @@
 package be.ita.toernooimanager.controller.DTO;
 
 import be.ita.toernooimanager.model.local.Club;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;

@@ -1,11 +1,9 @@
 package be.ita.toernooimanager.model.local;
 
 import be.ita.toernooimanager.model.local.config.CompetitionConfig;
-import jakarta.annotation.PostConstruct;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Year;
 import java.util.List;

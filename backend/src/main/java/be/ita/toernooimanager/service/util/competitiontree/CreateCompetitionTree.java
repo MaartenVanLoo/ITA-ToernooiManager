@@ -1,11 +1,10 @@
 package be.ita.toernooimanager.service.util.competitiontree;
 
 import be.ita.toernooimanager.model.local.Competitor;
-import be.ita.toernooimanager.service.Exceptions.AlreadyExistsException;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
-import java.util.HashMap;
 import java.util.UUID;
 
 public class CreateCompetitionTree {

@@ -4,7 +4,6 @@ import be.ita.toernooimanager.model.local.Competition;
 import be.ita.toernooimanager.model.local.Tournament;
 import be.ita.toernooimanager.model.local.config.CompetitionConfig;
 import be.ita.toernooimanager.repositories.local.CompetitionRepository;
-import be.ita.toernooimanager.repositories.local.TournamentRepository;
 import be.ita.toernooimanager.service.Exceptions.AlreadyExistsException;
 import be.ita.toernooimanager.service.Exceptions.ResourceNotFoundException;
 import be.ita.toernooimanager.service.local.config.CompetitionConfigService;

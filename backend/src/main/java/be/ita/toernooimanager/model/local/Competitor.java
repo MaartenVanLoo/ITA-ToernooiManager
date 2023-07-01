@@ -4,13 +4,10 @@ package be.ita.toernooimanager.model.local;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.bouncycastle.asn1.eac.UnsignedInteger;
 
 import java.util.Comparator;
 import java.util.UUID;
