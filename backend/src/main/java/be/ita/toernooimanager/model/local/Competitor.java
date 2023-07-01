@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.bouncycastle.asn1.eac.UnsignedInteger;
 
+import java.util.Comparator;
 import java.util.UUID;
 
 @Getter
@@ -52,11 +53,11 @@ public class Competitor {
     @PositiveOrZero
     private Integer weight; //Value in grams
 
-    @OneToOne
+    @ManyToOne
     private Club club;
 
-    @Column(name = "country")
-    private String country;
+    @ManyToOne
+    private Country country;
 
     @Column(name = "deleted")
     private Boolean deleted = false; //TODO: Soft delete?
@@ -64,12 +65,19 @@ public class Competitor {
     @Column(name = "comment")
     private String comment;
 
-    public Competitor(String firstName, String lastName, String birthYear, Integer belt, Club club, String country) {
+    public Competitor(String firstName, String lastName, String birthYear, Integer belt, Club club, Country country) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthYear = birthYear;
         this.belt = belt;
         this.club = club;
         this.country = country;
+    }
+
+    //Comparator to sort competitors
+    //https://www.baeldung.com/java-sort-collection-multiple-fields
+    public static Comparator<Competitor> createCompetitorLambdaComparator(){
+        return Comparator.comparing(Competitor::getCountry)
+                .thenComparing(Competitor::getClub);
     }
 }

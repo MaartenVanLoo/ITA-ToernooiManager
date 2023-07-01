@@ -9,16 +9,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Club {
+public class Club implements Comparable<Club> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id = UUID.randomUUID();
@@ -34,5 +32,24 @@ public class Club {
 
     public Club(String clubName) {
         this.clubName = clubName;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Club club = (Club) o;
+        return Objects.equals(clubName, club.clubName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clubName);
+    }
+
+    @Override
+    public int compareTo(Club o) {
+        return this.getClubName().compareTo(o.getClubName());
     }
 }

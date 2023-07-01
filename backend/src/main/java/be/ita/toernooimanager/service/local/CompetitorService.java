@@ -2,8 +2,10 @@ package be.ita.toernooimanager.service.local;
 
 import be.ita.toernooimanager.model.local.Club;
 import be.ita.toernooimanager.model.local.Competitor;
+import be.ita.toernooimanager.model.local.Country;
 import be.ita.toernooimanager.repositories.local.ClubRepository;
 import be.ita.toernooimanager.repositories.local.CompetitorRepository;
+import be.ita.toernooimanager.repositories.local.CountryRepository;
 import be.ita.toernooimanager.service.Exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,13 +25,14 @@ public class CompetitorService {
     CompetitorRepository competitorRepository;
 
     ClubRepository clubRepository; //TODO: user clubService instead?
+    CountryRepository countryRepository; //TODO: user countryService instead?
 
     final Random rand = new Random();
 
 
     //region Create
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public Competitor createCompetitor(String firstName, String lastName, String birthYear, Integer belt, Club club, String country){
+    public Competitor createCompetitor(String firstName, String lastName, String birthYear, Integer belt, Club club, Country country){
         //TODO: how about duplicates when 1 competitor want's to fight in 2 competitions => link competitor to competition?
         Competitor competitor = new Competitor(firstName,lastName,birthYear,belt, club,country);
         competitor.setWeightId(getNextWeightId());
@@ -38,8 +41,9 @@ public class CompetitorService {
         return competitor;
     }
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public Competitor createCompetitor(String firstName, String lastName, String birthYear, Integer belt, String clubName, String country){
+    public Competitor createCompetitor(String firstName, String lastName, String birthYear, Integer belt, String clubName, String countryName){
         Club club = clubRepository.findByClubNameOrAliasesContainingIgnoreCase(clubName, clubName).orElseThrow(()->new ResourceNotFoundException("Could not find club with name: " + clubName));
+        Country country = countryRepository.findByCountryNameOrAliasesContainingIgnoreCase(countryName, countryName).orElseThrow(()->new ResourceNotFoundException("Could not find country with name: " + countryName));
         Competitor competitor = createCompetitor(firstName,lastName,birthYear,belt,club,country);
         return competitor;
     }
