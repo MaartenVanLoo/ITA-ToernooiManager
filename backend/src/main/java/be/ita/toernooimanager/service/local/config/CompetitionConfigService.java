@@ -3,6 +3,7 @@ package be.ita.toernooimanager.service.local.config;
 import be.ita.toernooimanager.model.local.config.CompetitionConfig;
 import be.ita.toernooimanager.repositories.local.config.CompetitionConfigRepository;
 import be.ita.toernooimanager.service.Exceptions.ResourceNotFoundException;
+import be.ita.toernooimanager.utils.LocalDateTimeTypeAdapter;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.Writer;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +30,10 @@ public class CompetitionConfigService {
     //load from file
     public void load(String filename) {
         try {
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter())
+                    .create();
+
             JsonReader reader = new JsonReader(new FileReader(filename));
             List<CompetitionConfig> settings =  new ArrayList<>(Arrays.asList(gson.fromJson(reader, CompetitionConfig[].class)));
 

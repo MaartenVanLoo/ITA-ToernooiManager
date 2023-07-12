@@ -8,7 +8,10 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.UUID;
 
@@ -61,6 +64,12 @@ public class Competitor {
 
     @Column(name = "comment")
     private String comment;
+
+    @Column(updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
     public Competitor(String firstName, String lastName, Integer birthYear, Integer belt, Club club, Country country) {
         this.firstName = firstName;

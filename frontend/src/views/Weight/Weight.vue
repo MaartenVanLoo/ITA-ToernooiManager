@@ -1,13 +1,15 @@
 <template>
-<WeightComponent/>
+  <PickTournamentcomponent @tournamentSelected=""/>
+  <!--<WeightComponent/>-->
 </template>
 
 <script>
 import WeightComponent from "@/components/WeightComponent.vue";
+import PickTournamentcomponent from "@/components/PickTournamentcomponent.vue";
 
 export default {
   name: "Weight",
-    components: {WeightComponent}
+    components: {PickTournamentcomponent, WeightComponent}
 }
 </script>
 

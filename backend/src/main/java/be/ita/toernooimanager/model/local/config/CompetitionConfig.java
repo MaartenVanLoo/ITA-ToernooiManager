@@ -1,10 +1,12 @@
 package be.ita.toernooimanager.model.local.config;
 
+import be.ita.toernooimanager.utils.Exclude;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.UUID;
 public class CompetitionConfig {
 
     @Id
+    @Exclude //Exclude from gson serialization
     private UUID id = UUID.randomUUID();
 
     private String competitionName;
@@ -23,4 +26,7 @@ public class CompetitionConfig {
 
     @ElementCollection(targetClass = Integer.class, fetch = FetchType.EAGER)
     private List<Integer> years;
+
+    @Version
+    private Long version;
 }

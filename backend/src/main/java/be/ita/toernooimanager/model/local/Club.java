@@ -7,7 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -32,9 +35,16 @@ public class Club implements Comparable<Club> {
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     private List<String> aliases = new ArrayList<>(); //Known aliases of club
 
+    @Column(updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
+
     public Club(String clubName) {
         this.clubName = clubName;
     }
+
 
 
     @Override

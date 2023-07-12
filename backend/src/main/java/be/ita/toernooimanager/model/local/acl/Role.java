@@ -40,9 +40,11 @@ public class Role {
     @Column(name = "date_created", nullable = false, updatable = false)
     private LocalDateTime dateCreated;
 
+    @Column(updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
     @UpdateTimestamp
-    @Column(name = "updated_on")
-    private LocalDateTime updateDateTime;
+    private LocalDateTime updatedAt;
 
     public Role(String name) {
         this.name = name;

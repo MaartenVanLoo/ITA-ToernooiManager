@@ -5,6 +5,8 @@ import be.ita.toernooimanager.repositories.local.TournamentRepository;
 import be.ita.toernooimanager.service.Exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +24,7 @@ public class TournamentService {
 
 
     //region Create
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED)
     public Tournament createTournament(String name) {
         Tournament tournament = new Tournament(name);
         tournamentRepository.save(tournament);
@@ -37,10 +39,15 @@ public class TournamentService {
         Tournament tournament = tournamentRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(id.toString()));
         return tournament;
     }
+
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public Page<Tournament> getAllTournaments(final Pageable pageable) {
+        return tournamentRepository.findAll(pageable);
+    }
     //endregion
 
     //region Delete
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void removeAll(){
         log.info("Delete all tournaments");
         tournamentRepository.deleteAll();

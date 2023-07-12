@@ -19,12 +19,14 @@ export default createVuetify({
         colors: {
           primary: '#1867C0',
           secondary: '#5CBBF6',
-          cards:'#efefef'
+          cards:'#efefef',
+          cards_hover:'#da251c'
         },
       },
       dark:{
         colors:{
-          cards:'#111111'
+          cards:'#111111',
+          cards_hover:'#da251c'
         }
       }
     },

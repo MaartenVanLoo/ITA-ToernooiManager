@@ -4,7 +4,10 @@ import be.ita.toernooimanager.model.local.config.CompetitionConfig;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.time.Year;
 import java.util.List;
 import java.util.UUID;
@@ -37,6 +40,13 @@ public class Competition {
     //Allocation of tatamis
     @ManyToMany(fetch = FetchType.LAZY)
     List<Tatami> tatamis;
+
+
+    @Column(updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
     public static Competition fromConfig(Tournament tournament, CompetitionConfig config, String competitionName){
         Competition competition = new Competition();

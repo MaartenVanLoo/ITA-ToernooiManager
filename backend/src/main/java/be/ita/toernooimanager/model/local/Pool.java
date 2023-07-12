@@ -1,6 +1,7 @@
 package be.ita.toernooimanager.model.local;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -8,8 +9,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -19,7 +23,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Pool {
     @Id
-    private UUID id = UUID.randomUUID();;
+    private UUID id = UUID.randomUUID();
 
     //@Column(nullable = false)
     private String name;
@@ -31,4 +35,10 @@ public class Pool {
     @NotBlank
     @NotEmpty
     private HashMap<String,UUID> pool = new HashMap<>();
+
+    @Column(updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 }
