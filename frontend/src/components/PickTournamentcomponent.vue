@@ -47,6 +47,7 @@ init()
 function onOpenTournament(tournament: Tournament){
   tournamentStore.setTournament(tournament);
   emit('tournamentSelected', tournament.id);
+  console.log("Tournament: " + tournament.id)
 }
 </script>
 
