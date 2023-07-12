@@ -7,6 +7,7 @@ import be.ita.toernooimanager.service.local.*;
 import be.ita.toernooimanager.service.local.acl.PrivilegeService;
 import be.ita.toernooimanager.service.local.acl.RoleService;
 import be.ita.toernooimanager.service.local.acl.UserService;
+import be.ita.toernooimanager.service.local.config.CategoryConfigService;
 import be.ita.toernooimanager.service.local.config.CompetitionConfigService;
 import be.ita.toernooimanager.service.local.config.PouleSettingsService;
 import jakarta.annotation.PostConstruct;
@@ -30,12 +31,14 @@ import java.util.Set;
 public class DataLoader {
     private static final String pouleSettingsFile = "/PouleSettings.json";
     private static final String competitionsConfigFile = "/configs/CompetitionConfig.json";
+    private static final String categoryConfigFile = "/configs/CategoryConfig.json";
 
     PrivilegeService privilegeService;
     RoleService roleService;
     UserService userService;
     PouleSettingsService pouleSettingsService;
     CompetitionConfigService competitionConfigService;
+    CategoryConfigService categoryConfigService;
 
     TournamentService tournamentService;
     CompetitionService competitionService;
@@ -59,7 +62,7 @@ public class DataLoader {
 
         //Create clubs
         List<Club> clubs = createClubs();
-        List<Country> counties = createCountries();
+        List<Country> countries = createCountries();
 
         List<Competitor> competitors = createCompetitors(clubs);
         log.info("Data loader complete...");
@@ -151,6 +154,7 @@ public class DataLoader {
     private void loadSettings(){
         loadPouleSettings();
         loadCompetitionConfigSettings();
+        loadCategoryConfigSettings();
     }
     private void loadPouleSettings(){
         URL url = this.getClass().getResource(DataLoader.pouleSettingsFile);
@@ -169,6 +173,16 @@ public class DataLoader {
         }
         competitionConfigService.load(url.getPath());
         //competitionConfigService.save(url.getPath());
+    }
+    private void loadCategoryConfigSettings(){
+        URL url = this.getClass().getResource(DataLoader.categoryConfigFile);
+        if (url == null){
+            log.warn("Could not load Category Config");
+            return;
+        }
+        categoryConfigService.load(url.getPath());
+        //competitionConfigService.save(url.getPath());
+
     }
 
     private Tournament createTournament(){

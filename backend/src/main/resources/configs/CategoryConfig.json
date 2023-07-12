@@ -1,0 +1,198 @@
+[
+  {
+    "category": "U15M -34",
+    "competitionName": "U15",
+    "lowerWeight": 0,
+    "upperWeight": 34e3,
+    "matchTime": 180,
+    "gender": "Male",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15M -38",
+    "competitionName": "U15",
+    "lowerWeight": 34e3,
+    "upperWeight": 38e3,
+    "matchTime": 180,
+    "gender": "Male",
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15M -42",
+    "competitionName": "U15",
+    "lowerWeight": 38e3,
+    "upperWeight": 42e3,
+    "matchTime": 180,
+    "gender": "Male",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15M -46",
+    "competitionName": "U15",
+    "lowerWeight": 42e3,
+    "upperWeight": 46e3,
+    "matchTime": 180,
+    "gender": "Male",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15M -50",
+    "competitionName": "U15",
+    "lowerWeight": 46e3,
+    "upperWeight": 50e3,
+    "matchTime": 180,
+    "gender": "Male",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15M -55",
+    "competitionName": "U15",
+    "lowerWeight": 50e3,
+    "upperWeight": 55e3,
+    "matchTime": 180,
+    "gender": "Male",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15M -60",
+    "competitionName": "U15",
+    "lowerWeight": 55e3,
+    "upperWeight": 60e3,
+    "matchTime": 180,
+    "gender": "Male",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15M -66",
+    "competitionName": "U15",
+    "lowerWeight": 60e3,
+    "upperWeight": 66e3,
+    "matchTime": 180,
+    "gender": "Male",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15M +66",
+    "competitionName": "U15",
+    "lowerWeight": 66e3,
+    "upperWeight": 1e9,
+    "matchTime": 180,
+    "gender": "Male",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15V -32",
+    "competitionName": "U15",
+    "lowerWeight": 0,
+    "upperWeight": 32e3,
+    "matchTime": 180,
+    "gender": "Female",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15V -36",
+    "competitionName": "U15",
+    "lowerWeight": 32e3,
+    "upperWeight": 36e3,
+    "matchTime": 180,
+    "gender": "Female",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15V -40",
+    "competitionName": "U15",
+    "lowerWeight": 36e3,
+    "upperWeight": 40e3,
+    "matchTime": 180,
+    "gender": "Female",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15V -44",
+    "competitionName": "U15",
+    "lowerWeight": 40e3,
+    "upperWeight": 44e3,
+    "matchTime": 180,
+    "gender": "Female",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15V -48",
+    "competitionName": "U15",
+    "lowerWeight": 44e3,
+    "upperWeight": 48e3,
+    "matchTime": 180,
+    "gender": "Female",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15V -52",
+    "competitionName": "U15",
+    "lowerWeight": 48e3,
+    "upperWeight": 52e3,
+    "matchTime": 180,
+    "gender": "Female",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15V -57",
+    "competitionName": "U15",
+    "lowerWeight": 52e3,
+    "upperWeight": 57e3,
+    "matchTime": 180,
+    "gender": "Female",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15V -63",
+    "competitionName": "U15",
+    "lowerWeight": 57e3,
+    "upperWeight": 63e3,
+    "matchTime": 180,
+    "gender": "Female",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  },
+  {
+    "category": "U15V +63",
+    "competitionName": "U15",
+    "lowerWeight": 63e3,
+    "upperWeight": 1e9,
+    "matchTime": 180,
+    "gender": "Female",
+    "pinTimeWazaAri": 10,
+    "pinTimeIppon": 20,
+    "__comment__": "https://www.judovlaanderen.be/wp-content/uploads/2020/09/leeftijds-_en_gewichtscategorieen_vjf-kbjb_2020.pdf"
+  }
+]
