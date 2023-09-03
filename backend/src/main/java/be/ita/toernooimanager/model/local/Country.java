@@ -49,4 +49,9 @@ public class Country implements  Comparable<Country> {
     public int compareTo(Country o) {
         return this.getCountryName().compareTo(o.getCountryName());
     }
+
+    @Override
+    public String toString() {
+        return countryName;
+    }
 }

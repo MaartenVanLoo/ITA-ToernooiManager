@@ -8,7 +8,7 @@
         {{tournament.name}}
       </v-card-title>
       <v-card-actions>
-        <v-btn color="primary" :onclick="onOpenTournament(tournament)">Open</v-btn>
+        <v-btn color="primary" @click="onOpenTournament(tournament)">Open</v-btn>
       </v-card-actions>
     </v-card>
  </template>
@@ -19,7 +19,7 @@
 import {useTournamentStore} from "@/stores/TournamentStore";
 
 export default {
-  name: "PickTournamentcomponent"
+  name: "PickTournamentComponent"
 }
 </script>
 
@@ -36,15 +36,21 @@ const emit = defineEmits<{
 }>()
 function init(){
   console.log("init");
+  if (tournamentStore.isSelected()){
+    emit('tournamentSelected', tournamentStore.getTournament()!.id);
+  }
   getAllTournaments()
       .then(result=>{
         tournaments.value = result.content;
       });
+
 }
 init()
 
 
 function onOpenTournament(tournament: Tournament){
+  if (!tournament || !tournament.id) return;
+
   tournamentStore.setTournament(tournament);
   emit('tournamentSelected', tournament.id);
   console.log("Tournament: " + tournament.id)

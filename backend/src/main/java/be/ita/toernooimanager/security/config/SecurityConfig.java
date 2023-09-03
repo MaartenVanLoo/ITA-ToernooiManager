@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().configurationSource(request -> {
                     var cors = new CorsConfiguration();
-                    cors.setAllowedOrigins(List.of("http://frontend/", "http://localhost:3000/", "http://143.129.39.49:3000/", "http://g6-se.idlab.uantwerpen.be:3000/"));
+                    cors.setAllowedOrigins(List.of("http://localhost:3000"));
                     cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                     cors.setAllowedHeaders(List.of("*"));
                     return cors;

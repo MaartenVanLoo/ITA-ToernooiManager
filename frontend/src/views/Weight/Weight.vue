@@ -1,15 +1,25 @@
 <template>
-  <PickTournamentcomponent @tournamentSelected=""/>
-  <!--<WeightComponent/>-->
+  <PickTournamentComponent v-if="showTournamentComponent" @tournamentSelected="onTournamentSelected()"/>
+  <WeightComponent v-if="showWeightComponent"/>
 </template>
 
-<script>
+<script lang="ts">
 import WeightComponent from "@/components/WeightComponent.vue";
-import PickTournamentcomponent from "@/components/PickTournamentcomponent.vue";
+import PickTournamentComponent from "@/components/PickTournamentComponent.vue";
+import { ref } from "vue";
 
 export default {
   name: "Weight",
-    components: {PickTournamentcomponent, WeightComponent}
+    components: {PickTournamentComponent, WeightComponent}
+}
+</script>
+
+<script lang="ts" setup>
+const showTournamentComponent = ref<boolean>(true);
+const showWeightComponent = ref<boolean>(false);
+function onTournamentSelected(){
+  showTournamentComponent.value = false;
+  showWeightComponent.value = true;
 }
 </script>
 

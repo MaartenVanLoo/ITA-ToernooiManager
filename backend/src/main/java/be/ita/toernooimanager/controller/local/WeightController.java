@@ -26,11 +26,12 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class WeightController {
     private final ModelMapper modelMapper;
-    TournamentService tournamentService;
-    CompetitionService competitionService;
-    CompetitorService competitorService;
-    @GetMapping("/competitor/{weightId}")
-    @PreAuthorize("hasAuthority('weeg_read')")
+    private final TournamentService tournamentService;
+    private final CompetitionService competitionService;
+    private final CompetitorService competitorService;
+
+    @GetMapping(path ="/competitor/{weightId}")
+    //@PreAuthorize("hasAuthority('weeg_read')")
     public ResponseEntity<CompetitorGetDto> getCompetitor(@PathVariable("weightId") Integer weightId,
         @RequestHeader("tournament_id") UUID tournamentId,
         @RequestHeader("competition_id") UUID competitionId) throws IllegalAccessException {

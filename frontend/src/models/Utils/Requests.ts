@@ -4,8 +4,14 @@ import {HttpError, NoDataReceived, NoResponseReceived} from "@/models/Utils/Cust
 import {Tournament} from "@/models/Tournament";
 import config from "../../../config";
 import {useAuthStore} from "@/stores/AuthStore";
+import {Competitor} from "@/models/Competitor";
+import weight from "@/views/Weight/Weight.vue";
+import {useTournamentStore} from "@/stores/TournamentStore";
 
 const authStore = useAuthStore();
+const tournamentStore = useTournamentStore();
+
+
 export function getSearchSortFilterQuery(pageNumber?: number|undefined, elementsOnPage?: number|undefined, searchName?: string|undefined, sortBy?: Sortable|undefined){
     let query= {}
     if (searchName) Object.assign(query, {'name':searchName})     //filter value
@@ -37,12 +43,27 @@ export async function getAllTournaments(pageNumber?: number|undefined, elementsO
         }
         return page;
     }else{
-        throw new NoDataReceived("No projects returned by API");
+        throw new NoDataReceived("No tournaments returned by API");
     }
 }
 
 
+export async function getCompetitorByWeightId(weightId: number): Promise<Competitor> {
+    let url = new URL(config["API_URL"] + "/weight/competitor/" + weightId)
+    console.log( config["API_URL"])
+    console.log(url.toString())
+    const header = {headers:authStore.authHeader()};
+    Object.assign(header,{"tournament_id":tournamentStore.getTournament()?.id!});
 
+    console.log(header)
+    const res = await axios.get( url.toString(), header)
+        .catch(error=>handlePotentialAxiosException(error));
+    if (res && res.data) {
+        return Competitor.toObject(res.data as Competitor);
+    }else{
+        throw new NoDataReceived("No competitor returned by API");
+    }
+}
 
 //#region local helpers
 export function handlePotentialAxiosException(error:Error){

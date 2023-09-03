@@ -1,5 +1,6 @@
 package be.ita.toernooimanager.exception;
 
+import be.ita.toernooimanager.service.Exceptions.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +34,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .badRequest()
                 .body(errors);
+    }
+
+    @ExceptionHandler(IllegalAccessException.class)
+    public ResponseEntity<?> handleIllegalAccessExceptions(IllegalAccessException ex) {
+        return ResponseEntity
+                .badRequest()
+                .body(ex.getMessage());
+    }
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<?> handleIllegalAccessExceptions(ResourceNotFoundException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new StandardErrorFormat("Resource not found", ex.getMessage()));
     }
 }

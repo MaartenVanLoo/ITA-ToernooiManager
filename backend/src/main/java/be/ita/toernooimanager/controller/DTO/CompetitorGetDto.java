@@ -1,6 +1,7 @@
 package be.ita.toernooimanager.controller.DTO;
 
 import be.ita.toernooimanager.model.local.Club;
+import be.ita.toernooimanager.model.local.Country;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -23,7 +24,7 @@ public class CompetitorGetDto {
     private String lastName;
 
     @NotNull
-    private String birthYear;
+    private Integer birthYear;
 
     @NotNull
     private Integer belt; //kyu: <0; dan >0
@@ -33,5 +34,5 @@ public class CompetitorGetDto {
 
     private Club club;
 
-    private String country;
+    private Country country;
 }

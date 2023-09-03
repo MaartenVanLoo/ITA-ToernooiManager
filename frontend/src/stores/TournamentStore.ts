@@ -26,6 +26,12 @@ export const useTournamentStore = defineStore('tournamentStore', () => {
     function getTournament(): Tournament|undefined{
         return tournament.value
     }
+    function isSelected(): boolean{
+        if (tournament.value == undefined) return false
+        if (tournament.value.id == undefined) return false
+        if (tournament.value.name == undefined) return false
+        return true;
+    }
 
-    return {setTournament, getTournament }
+    return {setTournament, getTournament, isSelected }
 })

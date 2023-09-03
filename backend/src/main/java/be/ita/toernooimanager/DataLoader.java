@@ -197,6 +197,7 @@ public class DataLoader {
         competitions.add(competitionService.createCompetition(tournament.getId(),"U15"));
         competitions.add(competitionService.createCompetition(tournament.getId(),"U18"));
         competitions.add(competitionService.createCompetition(tournament.getId(),"U21/U21+"));
+        competitionService.startWeighing(competitions.get(2).getId());
         return competitions;
     }
     private List<Tatami> createTatamis() throws AlreadyExistsException {

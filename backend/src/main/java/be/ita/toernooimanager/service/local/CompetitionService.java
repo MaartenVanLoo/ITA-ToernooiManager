@@ -51,7 +51,7 @@ public class CompetitionService {
     //endregion
 
     //region Get
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED)
     public Competition getCompetition(UUID id){
         Competition competition = competitionRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(id.toString()));
         return competition;
@@ -59,10 +59,17 @@ public class CompetitionService {
     //endregion
 
     //region Delete
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void removeAll(){
         log.info("Delete all competitions");
         competitionRepository.deleteAll();
     }
     //endregion
+
+    //region Update
+    public void startWeighing(UUID competitionId){
+        Competition competition= this.getCompetition(competitionId);
+        competition.setWeighing(true);
+        competitionRepository.save(competition);
+    }
 }
